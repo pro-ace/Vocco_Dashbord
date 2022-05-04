@@ -1,0 +1,26 @@
+//
+// Theme style(coming soon)
+//
+// Mode
+$mode: dark;
+// Initialize
+@import 'init';
+// Components
+@import './core/components/components';
+@import 'components/components';
+// Layout
+@import 'layout/layout';
+@import './core/layout/docs/layout';
+#chartContainer .apexcharts-tooltip {
+    color: #fff !important;
+    background-color: rgb(30 30 30 / 80%) !important;
+}
+
+#chartContainer .apexcharts-tooltip .apexcharts-tooltip-title {
+    background: rgb(0 0 0 / 70%) !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+#chartContainer .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
+    background: #ffffff !important;
+}
