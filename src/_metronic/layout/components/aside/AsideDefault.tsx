@@ -30,9 +30,10 @@ const AsideDefault: FC = () => {
           <Link to='/dashboard'>
             <img
               alt='Logo'
-              className='h-25px logo'
-              src={toAbsoluteUrl('/media/logos/logo-1-dark.svg')}
+              className='h-35px logo'
+              src={toAbsoluteUrl('/media/logos/logo.png')}
             />
+            <span className="align-items-center text-dark fw-bolder my-1 fs-5 ms-3">Vocco Dashboard</span>
           </Link>
         )}
         {aside.theme === 'light' && (
@@ -40,7 +41,7 @@ const AsideDefault: FC = () => {
             <img
               alt='Logo'
               className='h-25px logo'
-              src={toAbsoluteUrl('/media/logos/logo-1.svg')}
+              src={toAbsoluteUrl('/media/logos/logo.png')}
             />
           </Link>
         )}

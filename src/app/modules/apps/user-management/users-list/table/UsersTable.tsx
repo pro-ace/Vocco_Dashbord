@@ -11,14 +11,16 @@ import {KTCardBody} from '../../../../../../_metronic/helpers'
 
 const UsersTable = () => {
   const users = useQueryResponseData()
+  console.log(users);
   const isLoading = useQueryResponseLoading()
   const data = useMemo(() => users, [users])
+  console.log("usememo data", data);
   const columns = useMemo(() => usersColumns, [])
   const {getTableProps, getTableBodyProps, headers, rows, prepareRow} = useTable({
     columns,
     data,
   })
-
+  console.log('rows', rows);
   return (
     <KTCardBody className='py-4'>
       <div className='table-responsive'>

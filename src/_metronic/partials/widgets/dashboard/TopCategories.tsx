@@ -28,7 +28,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
             <a className="nav-link d-flex justify-content-between flex-column flex-center overflow-hidden active w-80px h-85px py-4" data-bs-toggle="pill" href="#kt_stats_widget_2_tab_1">
               {/* begin::Icon */}
               <div className="nav-icon">
-                <img alt="" src="media/stock/categories/fun.png" className="" />
+                <img alt="" src="/metronic8/react/demo1/media/stock/categories/fun.png" className="" />
               </div>
               {/* end::Icon */}
               {/* begin::Subtitle */}
@@ -47,7 +47,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
             <a className="nav-link d-flex justify-content-between flex-column flex-center overflow-hidden w-80px h-85px py-4" data-bs-toggle="pill" href="#kt_stats_widget_2_tab_2">
               {/* begin::Icon */}
               <div className="nav-icon">
-                <img alt="" src="media/stock/categories/adult.png" className="" />
+                <img alt="" src="/metronic8/react/demo1/media/stock/categories/adult.png" className="" />
               </div>
               {/* end::Icon */}
               {/* begin::Subtitle */}
@@ -66,7 +66,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
             <a className="nav-link d-flex justify-content-between flex-column flex-center overflow-hidden w-80px h-85px py-4" data-bs-toggle="pill" href="#kt_stats_widget_2_tab_3">
               {/* begin::Icon */}
               <div className="nav-icon">
-                <img alt="" src="media/stock/categories/education.png" className="" />
+                <img alt="" src="/metronic8/react/demo1/media/stock/categories/education.png" className="" />
               </div>
               {/* end::Icon */}
               {/* begin::Subtitle */}
@@ -85,7 +85,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
             <a className="nav-link d-flex justify-content-between flex-column flex-center overflow-hidden w-80px h-85px py-4" data-bs-toggle="pill" href="#kt_stats_widget_2_tab_4">
               {/* begin::Icon */}
               <div className="nav-icon">
-                <img alt="" src="media/stock/categories/horror.png" className="" />
+                <img alt="" src="/metronic8/react/demo1/media/stock/categories/horror.png" className="" />
               </div>
               {/* end::Icon */}
               {/* begin::Subtitle */}
@@ -104,7 +104,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
             <a className="nav-link d-flex justify-content-between flex-column flex-center overflow-hidden w-80px h-85px py-4" data-bs-toggle="pill" href="#kt_stats_widget_2_tab_5">
               {/* begin::Icon */}
               <div className="nav-icon">
-              <img alt="" src="media/stock/categories/transport.png" className="" />
+              <img alt="" src="/metronic8/react/demo1/media/stock/categories/transport.png" className="" />
               </div>
               {/* end::Icon */}
               {/* begin::Subtitle */}
