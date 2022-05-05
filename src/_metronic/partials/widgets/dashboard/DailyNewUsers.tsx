@@ -70,19 +70,19 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
             <span className="symbol-label bg-warning text-inverse-warning fw-bolder">A</span>
           </div>
           <div className="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-            <img alt="Pic" src="/metronic8/react/demo1/media/avatars/300-11.jpg" />
+            <img alt="Pic" src="/media/avatars/300-11.jpg" />
           </div>
           <div className="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
             <span className="symbol-label bg-primary text-inverse-primary fw-bolder">S</span>
           </div>
           <div className="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-            <img alt="Pic" src="/metronic8/react/demo1/media/avatars/300-2.jpg" />
+            <img alt="Pic" src="/media/avatars/300-2.jpg" />
           </div>
           <div className="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
             <span className="symbol-label bg-danger text-inverse-danger fw-bolder">P</span>
           </div>
           <div className="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-            <img alt="Pic" src="/metronic8/react/demo1/media/avatars/300-12.jpg" />
+            <img alt="Pic" src="/media/avatars/300-12.jpg" />
           </div>
           <a href="#" className="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
             <span className="symbol-label bg-light text-gray-400 fs-8 fw-bolder">+42</span>
