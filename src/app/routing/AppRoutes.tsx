@@ -23,7 +23,7 @@ const AppRoutes: FC = () => {
   // const {currentUser} = useAuth()
   const currentUser = true
   return (
-    <BrowserRouter basename={PUBLIC_URL}>
+    <BrowserRouter basename={"/"}>
       <Routes>
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
