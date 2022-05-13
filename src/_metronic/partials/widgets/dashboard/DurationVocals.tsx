@@ -78,7 +78,7 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
 
           <div className={`fw-bolder fs-3 text-${chartColor}`}>{`${(total / 60).toFixed()}m ${total % 60}`}</div>
         </div>
-        <div ref={chartRef} className='mixed-widget-10-chart'></div>
+        <div id='chartContainer' ref={chartRef} className='mixed-widget-10-chart'></div>
       </div>
     </div>
   )
