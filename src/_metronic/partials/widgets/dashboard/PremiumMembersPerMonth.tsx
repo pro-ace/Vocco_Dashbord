@@ -13,7 +13,7 @@ const PremiumMembersPerMonth: React.FC<Props> = ({className, chartColor, chartHe
   const chartRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (!chartRef.current) {
+    if (!chartRef.current || !chartColor || !chartHeight) {
       return
     }
 
@@ -27,8 +27,8 @@ const PremiumMembersPerMonth: React.FC<Props> = ({className, chartColor, chartHe
         chart.destroy()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+
+  }, [chartRef, chartColor, chartHeight])
 
   return (
     <div className={`card ${className}`}>

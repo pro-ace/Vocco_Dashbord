@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
+import {getRecordsDuration} from './core/_requests'
 
 type Props = {
   className: string
@@ -10,6 +10,12 @@ type Props = {
 }
 
 const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) => {
+
+  const [totalRecords, setTotalRecords] = useState<Array<{
+    duration: number
+    createdAt: Date
+  }>>([]);
+  const [total, setTotal] =  useState<number>(0);
   const chartRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -17,7 +23,28 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
       return
     }
 
-    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight))
+    if (!totalRecords) {
+      return 
+    }
+    var date = new Date();
+    var dayArray = [];
+    var durationArray = [];
+    var options = { month: 'short'} as const;
+    for (var dm = 0 ; dm < 12; dm++){
+      let sDay = new Date(date.getFullYear(), dm , 1);
+      let eDay = new Date(date.getFullYear(), dm + 1 , 0);
+      let duration = 0;
+      totalRecords.map((eRecord) => {
+        if (new Date(eRecord.createdAt) >= sDay && new Date(eRecord.createdAt) < eDay){
+          duration += eRecord.duration * 1;
+        }
+        return true
+      });
+      durationArray.push(duration);
+      dayArray.push(new Intl.DateTimeFormat('en-US', options).format(sDay));
+    }
+
+    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight, durationArray, dayArray))
     if (chart) {
       chart.render()
     }
@@ -27,32 +54,37 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
         chart.destroy()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, totalRecords, chartColor, chartHeight])
+
+  useEffect(() =>{
+    const fetchData = async () => {
+      const {data: res} = await getRecordsDuration();
+      setTotal(res.total);
+      setTotalRecords(res.totalRecords);
+    }
+    
+    fetchData()
+      .catch(console.error);
+
+  }, [])
 
   return (
     <div className={`card ${className}`}>
-      {/* begin::Body */}
       <div className='card-body p-0 d-flex justify-content-between flex-column overflow-hidden'>
-        {/* begin::Hidden */}
         <div className='d-flex flex-stack flex-wrap flex-grow-1 px-9 pt-9 pb-3'>
           <div className='me-2'>
             <span className='fw-bolder text-gray-800 d-block fs-3'>Duration of vocals</span>
           </div>
 
-          <div className={`fw-bolder fs-3 text-${chartColor}`}>1m 07s</div>
+          <div className={`fw-bolder fs-3 text-${chartColor}`}>{`${(total / 60).toFixed()}m ${total % 60}`}</div>
         </div>
-        {/* end::Hidden */}
-
-        {/* begin::Chart */}
         <div ref={chartRef} className='mixed-widget-10-chart'></div>
-        {/* end::Chart */}
       </div>
     </div>
   )
 }
 
-const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
+const chartOptions = (chartColor: string, chartHeight: string, durArray: Array<number>, dayArray: Array<string>): ApexOptions => {
   const labelColor = getCSSVariableValue('--bs-gray-500')
   const borderColor = getCSSVariableValue('--bs-gray-200')
   const secondaryColor = getCSSVariableValue('--bs-gray-300')
@@ -62,11 +94,11 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
     series: [
       {
         name: 'Vocal',
-        data: [50, 60, 70, 80, 60, 50, 70, 60],
+        data: durArray,
       },
       {
         name: 'Answer',
-        data: [80, 55, 75, 67, 60, 53, 75, 55],
+        data: durArray,
       },
     ],
     chart: {
@@ -96,7 +128,8 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      categories: dayArray,
+      tickAmount:6,
       axisBorder: {
         show: false,
       },

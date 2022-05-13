@@ -3,17 +3,6 @@ import React, {FC} from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
 import {
-  MixedWidget2,
-  MixedWidget10,
-  MixedWidget11,
-  ListsWidget2,
-  ListsWidget3,
-  ListsWidget4,
-  ListsWidget5,
-  ListsWidget6,
-  TablesWidget5,
-  TablesWidget10,
-  MixedWidget8,
   UserGrowthWidget,
   TotalNumberOfNewUserWeek,
   TotalNumberOfNewUserMonth,
@@ -25,8 +14,8 @@ import {
   TopUsers,
   UsersByCountry,
   UserGrowthByCountry,
-  PremiumMembersPerMonth,
-  DurationVocals
+  DurationVocals,
+  MapDistribution
 } from '../../../_metronic/partials/widgets'
 
 const DashboardPage: FC = () => (
@@ -105,18 +94,21 @@ const DashboardPage: FC = () => (
     {/* begin::Row */}
     <div className='row g-5 g-xl-10 g-xl-10'>
       <div className='col-xl-4 mb-xl-10'>
-          <PremiumMembersPerMonth
-            className='card-xl-stretch mb-5 mb-xl-8'
-            chartColor='primary'
-            chartHeight='150px'
-          />
-      </div>
-      <div className='col-xl-4 mb-xl-10'>
         <DurationVocals
           className='card-xl-stretch mb-xl-8'
           chartColor='primary'
           chartHeight='200px'
         />
+      </div>
+    </div>
+    {/* end::Row */}
+
+    {/* begin::Row */}
+    <div className='row g-5 g-xl-10 g-xl-10'>
+      <div className='col-xl-12 mb-xl-10'>
+          <MapDistribution
+            className='card-xl-stretch mb-xl-8'
+          />
       </div>
     </div>
     {/* end::Row */}

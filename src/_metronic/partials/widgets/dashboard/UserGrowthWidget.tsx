@@ -1,23 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
-import {getCSSVariableValue} from '../../../assets/ts/_utils'
+import {getsubscribecount} from './core/_requests'
 
 type Props = {
   className: string
 }
 
 const UserGrowthWidget: React.FC<Props> = ({className}) => {
+
+  const [subscribeCount, setSubscribeCount] = useState<number>(0);
+  const [growthPercent, setGrowthPercent] = useState<number>(0);
+  const [totalRecords, setTotalRecords] = useState<number | null>(null);
+  const [funRecords, setFunRecords] = useState<number | null>(null);
+  const [adultsRecords, setAdultsRecords] = useState<number | null>(null);
+  const [educationRecords, setEducationRecords] = useState<number | null>(null);
   const chartRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (!chartRef.current) {
       return
     }
-
+    if (!totalRecords || !funRecords || !adultsRecords || !educationRecords){
+      return
+    }
     const chart = new ApexCharts(
       chartRef.current,
-      chartOptions()
+      chartOptions(totalRecords, funRecords, adultsRecords, educationRecords)
     )
     if (chart) {
       chart.render()
@@ -29,7 +38,25 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, totalRecords, funRecords, adultsRecords, educationRecords])
+
+  useEffect(() =>{
+    const fetchData = async () => {
+      const {data: res} = await getsubscribecount();
+      setSubscribeCount(res.count);
+      setGrowthPercent(res.growthPercent);
+      setTotalRecords(res.totalRecords);
+      setFunRecords(res.funRecords);
+      setAdultsRecords(res.adultsRecords);
+      setEducationRecords(res.educationRecords);
+    }
+  
+    // call the function
+    fetchData()
+      .catch(console.error);
+
+
+  }, [])
 
   return (
     <div className={`card ${className}`}>
@@ -43,18 +70,31 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             {/* <span className="fs-4 fw-bold text-gray-400 me-1 align-self-start">$</span> */}
             {/* end::Currency */}
             {/* begin::Amount */}
-            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">69,700</span>
+            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{subscribeCount}</span>
             {/* end::Amount */}
             {/* begin::Badge */}
-            <span className="badge badge-success fs-base">
-            {/* begin::Svg Icon | path: icons/duotune/arrows/arr066.svg */}
-            <span className="svg-icon svg-icon-5 svg-icon-white ms-n1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-              </svg>
-            </span>
-            {/* end::Svg Icon */}12.23%</span>
+            {
+              growthPercent > 0 ? 
+                <span className="badge badge-success fs-base">
+                {/* begin::Svg Icon | path: icons/duotune/arrows/arr066.svg */}
+                <span className="svg-icon svg-icon-5 svg-icon-white ms-n1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                    <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+                  </svg>
+                </span> 
+                {/* end::Svg Icon */}{growthPercent}%</span>
+              :
+              <span className="badge badge-danger fs-base">
+              {/* begin::Svg Icon | path: icons/duotune/arrows/arr065.svg */}
+              <span className="svg-icon svg-icon-5 svg-icon-white ms-n1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor" />
+                  <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="currentColor" />
+                </svg>
+              </span>
+              {/* end::Svg Icon */}{growthPercent}%</span>
+            }
             {/* end::Badge */}
           </div>
           {/* end::Info */}
@@ -85,7 +125,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             <div className="text-gray-500 flex-grow-1 me-4">Fun</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">9,800</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{funRecords}</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
@@ -98,7 +138,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             <div className="text-gray-500 flex-grow-1 me-4">For adults</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">5,000</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{adultsRecords}</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
@@ -111,7 +151,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             <div className="text-gray-500 flex-grow-1 me-4">Educations</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">2,400</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{educationRecords}</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
@@ -123,9 +163,9 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
   )
 }
 
-const chartOptions = (): ApexOptions => {
+const chartOptions = (total: number, funs: number, adults: number, educations: number): ApexOptions => {
   return {
-    series: [7660, 5000, 2400, 2100],
+    series: [funs, adults, educations, total - funs - adults - educations],
     chart: {
       height: 70,
       type: 'donut',

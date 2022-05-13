@@ -12,6 +12,7 @@ export * from './dashboard/UsersByCountry'
 export * from './dashboard/UserGrowthByCountry'
 export * from './dashboard/PremiumMembersPerMonth'
 export * from './dashboard/DurationVocals'
+export * from './dashboard/MapDistribution'
 
 // charts
 export * from './feeds/FeedsWidget2'

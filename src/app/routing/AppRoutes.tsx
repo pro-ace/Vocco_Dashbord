@@ -9,7 +9,7 @@ import {FC} from 'react'
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import {PrivateRoutes} from './PrivateRoutes'
 import {ErrorsPage} from '../modules/errors/ErrorsPage'
-import {Logout, AuthPage, useAuth} from '../modules/auth'
+import {Logout, AuthPage} from '../modules/auth'
 import {App} from '../App'
 
 /**
@@ -17,9 +17,9 @@ import {App} from '../App'
  *
  * @see https://facebook.github.io/create-react-app/docs/using-the-public-folder
  */
-const {PUBLIC_URL} = process.env
+// const {PUBLIC_URL} = process.env
 
-console.log("PUBLIC_URL", process.env);
+// console.log("PUBLIC_URL", process.env);
 
 const AppRoutes: FC = () => {
   // const {currentUser} = useAuth()
