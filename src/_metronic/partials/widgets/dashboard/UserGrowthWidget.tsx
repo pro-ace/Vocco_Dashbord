@@ -43,7 +43,6 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getsubscribecount();
-      console.log(res);
       setSubscribeCount(res.count);
       setGrowthPercent(res.growthPercent);
       setTotalRecords(res.totalRecords);

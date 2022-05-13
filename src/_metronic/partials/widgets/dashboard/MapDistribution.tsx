@@ -61,7 +61,7 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
       am5map.MapPolygonSeries.new(root, {
         //geoJSON: am5geodata_usaLow,
         geoJSON: am5geodata_worldLow,
-        include: ['US', 'BR', 'DE', 'AU', 'JP']
+        include: ['FR', 'AS']
       })
     );
 
@@ -84,18 +84,6 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
       fill: root.interfaceColors.get("primaryButtonHover"),
     });
 
-    // Add zoom control
-    // https://www.amcharts.com/docs/v5/charts/map-chart/map-pan-zoom/#Zoom_control
-    //chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
-
-    // Set clicking on "water" to zoom out
-    // chart.chartContainer
-    //   .get("background")
-    //   .events.on("click", function () {
-    //     chart.goHome();
-    //   });
-
-    // Make stuff animate on load
     chart.appear(1000, 100);
 
   }, []);

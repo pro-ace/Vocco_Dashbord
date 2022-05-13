@@ -14,7 +14,6 @@ import {
   TopUsers,
   UsersByCountry,
   UserGrowthByCountry,
-  PremiumMembersPerMonth,
   DurationVocals,
   MapDistribution
 } from '../../../_metronic/partials/widgets'
@@ -94,13 +93,6 @@ const DashboardPage: FC = () => (
 
     {/* begin::Row */}
     <div className='row g-5 g-xl-10 g-xl-10'>
-      <div className='col-xl-4 mb-xl-10'>
-          <PremiumMembersPerMonth
-            className='card-xl-stretch mb-5 mb-xl-8'
-            chartColor='primary'
-            chartHeight='150px'
-          />
-      </div>
       <div className='col-xl-4 mb-xl-10'>
         <DurationVocals
           className='card-xl-stretch mb-xl-8'

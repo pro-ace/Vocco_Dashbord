@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
 import {getnewusersthisweek} from './core/_requests'
-import { useState } from 'react';
+import {WeekDataModel} from './core/_models'
 
 type Props = {
   className: string,
@@ -13,7 +13,7 @@ const TotalNumberOfNewUserWeek: React.FC<Props> = ({className}) => {
 
   const [weekTotal, setWeekTotal] = useState<number | null>(0);
   const [growthWeek, setGrowthWeek] = useState<number>(0);
-  const [weekUsers, setWeekUsers] = useState<Array<number | null>>([])
+  const [weekData, setWeekData] = useState<WeekDataModel | null>(null)
   const chartRef = useRef<HTMLDivElement | null>(null)
   
   useEffect(() => {
@@ -21,13 +21,13 @@ const TotalNumberOfNewUserWeek: React.FC<Props> = ({className}) => {
       return
     }
 
-    if (!weekUsers){
+    if (!weekData){
       return 
     }
 
     const chart = new ApexCharts(
       chartRef.current,
-      chartOptions(weekUsers)
+      chartOptions(weekData)
     )
     if (chart) {
       chart.render()
@@ -39,14 +39,14 @@ const TotalNumberOfNewUserWeek: React.FC<Props> = ({className}) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef, weekUsers])
+  }, [chartRef, weekData])
 
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getnewusersthisweek();
       setWeekTotal(res.weekTotal);
       setGrowthWeek(res.growthWeek);
-      setWeekUsers(res.weekUsers);
+      setWeekData(res.weekData);
     }
   
     // call the function
@@ -115,7 +115,7 @@ const TotalNumberOfNewUserWeek: React.FC<Props> = ({className}) => {
   )
 }
 
-const chartOptions = (wUsers: Array<number | null>): ApexOptions => {
+const chartOptions = (wData: WeekDataModel): ApexOptions => {
   const chartHeight = 80;
   const labelColor = getCSSVariableValue('--bs-gray-500');
   const borderColor = getCSSVariableValue('--bs-border-dashed-color');
@@ -124,7 +124,7 @@ const chartOptions = (wUsers: Array<number | null>): ApexOptions => {
   return {
     series: [{
       name: 'Users',
-      data: wUsers
+      data: wData.weekUsers
     }, ],
     chart: {
         fontFamily: 'inherit',
@@ -155,7 +155,7 @@ const chartOptions = (wUsers: Array<number | null>): ApexOptions => {
         width: 9,
         colors: ['transparent']
     },
-    xaxis: {                
+    xaxis: {     
         axisBorder: {
             show: false,
         },
@@ -212,7 +212,7 @@ const chartOptions = (wUsers: Array<number | null>): ApexOptions => {
         },
         x: {
             formatter: function (val) {
-                return 'Feb: ' + val;
+                return new Date(wData.datesArr[val - 1]).toDateString();
             }
         },
         y: {
