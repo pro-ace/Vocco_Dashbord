@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export interface SubscribeCountModel {
   count: number
   growthPercent: number
@@ -126,3 +127,31 @@ export interface RecordDuration {
     createdAt: Date
   }>
 }
+=======
+export interface SubscribeCountModel {
+  count: number
+  growthPercent: number
+  totalRecords: number
+  funRecords: number
+  adultsRecords: number
+  educationRecords: number
+}
+
+export interface NewUsersThisWeekModel {
+  weekTotal: number
+  growthWeek: number
+  weekUsers: Array<number>
+}
+
+export interface NewUsersThisMonthModel {
+  count: number
+  growthPercent: number
+}
+
+export interface UserAddressModel {
+  addressLine: string
+  city: string
+  state: string
+  postCode: string
+}
+>>>>>>> 7efb2ae9bfd5ff75ec627c17f0cf3af148a7c714
