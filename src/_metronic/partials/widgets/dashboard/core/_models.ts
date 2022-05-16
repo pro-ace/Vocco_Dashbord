@@ -126,3 +126,9 @@ export interface RecordDuration {
     createdAt: Date
   }>
 }
+
+export interface countriesModel {
+  data: Array<{
+    country: string
+  }>
+}

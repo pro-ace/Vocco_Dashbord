@@ -2,14 +2,21 @@ import {ID, Response} from '../../../../../../_metronic/helpers'
 export type User = {
   id?: ID
   name?: string
-  avatar?: string
-  email?: string
-  position?: string
+  email?: string,
+  dob?: string,
+  gender?: string,
+  country?: string,
+  position?: string,
+  premium?: string,
   role?: string
   last_login?: string
   two_steps?: boolean
   joined_day?: string
   online?: boolean
+  avatar?: {
+    url?: string,
+    link?: string
+  }
   initials?: {
     label: string
     state: string
@@ -19,7 +26,6 @@ export type User = {
 export type UsersQueryResponse = Response<Array<User>>
 
 export const initialUser: User = {
-  avatar: 'avatars/300-6.jpg',
   position: 'Art Director',
   role: 'Administrator',
   name: '',

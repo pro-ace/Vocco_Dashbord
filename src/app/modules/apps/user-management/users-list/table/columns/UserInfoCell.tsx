@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx'
 import {FC} from 'react'
-import {toAbsoluteUrl} from '../../../../../../../_metronic/helpers'
 import {User} from '../../core/_models'
 
 type Props = {
@@ -15,7 +14,7 @@ const UserInfoCell: FC<Props> = ({user}) => (
       <a href='#'>
         {user.avatar ? (
           <div className='symbol-label'>
-            <img src={toAbsoluteUrl(`/media/${user.avatar}`)} alt={user.name} className='w-100' />
+            <img src={`${user.avatar.url}`} alt={user.name} className='w-100' />
           </div>
         ) : (
           <div

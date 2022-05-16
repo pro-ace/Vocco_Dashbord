@@ -36,6 +36,8 @@ const QueryResponseProvider: FC = ({children}) => {
     },
     {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )
+  console.log("response query Response provider");
+  console.log(isFetching, refetch, getUsers(query));
 
   return (
     <QueryResponseContext.Provider value={{isLoading: isFetching, refetch, response, query}}>

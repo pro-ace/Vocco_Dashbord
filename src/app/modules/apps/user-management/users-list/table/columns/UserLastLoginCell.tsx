@@ -5,7 +5,7 @@ type Props = {
 }
 
 const UserLastLoginCell: FC<Props> = ({last_login}) => (
-  <div className='badge badge-light fw-bolder'>{last_login}</div>
+  <div className='fw-bolder'>{last_login ? new Date(last_login).toDateString(): ''}</div>
 )
 
 export {UserLastLoginCell}

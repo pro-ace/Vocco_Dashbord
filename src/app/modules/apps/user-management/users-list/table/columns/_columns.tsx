@@ -6,6 +6,8 @@ import {UserActionsCell} from './UserActionsCell'
 import {UserSelectionCell} from './UserSelectionCell'
 import {UserCustomHeader} from './UserCustomHeader'
 import {UserSelectionHeader} from './UserSelectionHeader'
+import { UserBirthday } from './UserBirthday'
+import { UserGender } from './UserGender'
 import {User} from '../../core/_models'
 
 const usersColumns: ReadonlyArray<Column<User>> = [
@@ -20,28 +22,40 @@ const usersColumns: ReadonlyArray<Column<User>> = [
     Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
   },
   {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Role' className='min-w-125px' />,
-    accessor: 'role',
+    Header: (props) => <UserCustomHeader tableProps={props} title='Gender' />,
+    id: 'gender',
+    Cell: ({...props}) => <UserGender gender={props.data[props.row.index].gender} />,
+  },
+  {
+    Header: (props) => <UserCustomHeader tableProps={props} title='Birthday' className='min-w-125px' />,
+    id: 'dob',
+    Cell: ({...props}) => <UserBirthday dob={props.data[props.row.index].dob} />,
+  },
+  {
+    Header: (props) => (
+    <UserCustomHeader tableProps={props} title='country'/>
+    ),
+    accessor: 'country',
+  },
+  {
+    Header: (props) => (
+    <UserCustomHeader tableProps={props} title='Premium'/>
+    ),
+    accessor: 'premium',
   },
   {
     Header: (props) => (
       <UserCustomHeader tableProps={props} title='Last login' className='min-w-125px' />
     ),
     id: 'last_login',
-    Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].last_login} />,
-  },
-  {
-    Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Two steps' className='min-w-125px' />
-    ),
-    id: 'two_steps',
-    Cell: ({...props}) => <UserTwoStepsCell two_steps={props.data[props.row.index].two_steps} />,
+    Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].lastActivity} />,
   },
   {
     Header: (props) => (
       <UserCustomHeader tableProps={props} title='Joined day' className='min-w-125px' />
-    ),
-    accessor: 'joined_day',
+      ),
+      id: 'joined_day',
+      Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].createdAt} />,
   },
   {
     Header: (props) => (

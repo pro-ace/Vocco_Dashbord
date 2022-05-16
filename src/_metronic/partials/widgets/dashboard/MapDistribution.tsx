@@ -6,6 +6,9 @@ import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow"
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated"
 import { getCSSVariableValue } from '../../../assets/ts/_utils'
 import { useEffect } from 'react'
+import {getCountries} from './core/_requests'
+import countryCodeData from './data/country';
+import { useState } from 'react';
 
 type Props = {
   className: string,
@@ -13,13 +16,33 @@ type Props = {
 
 const MapDistribution: React.FC<Props> = ({ className }) => {
 
-  useEffect(() => {
-    const root = am5.Root.new("mapdistrubution");
+  const [countryData, setCountryData] = useState<Array<string>>([]);
 
+  useEffect(() => {
+    let countries = [];
+    const fetchData = async () => {
+      const {data: res} = await getCountries();
+      countries = res.data.map(c => {
+        let code = '';
+        countryCodeData.forEach(eCode => {
+          if (eCode.Name === c.country) code = eCode.Code;
+        });
+        return code;        
+      })
+      setCountryData(countries);
+    }
+    fetchData()
+    .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (!countryData.length) {
+      return
+    }
+    const root = am5.Root.new("mapdistrubution");
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-
     let chart = root.container.children.push(
       am5map.MapChart.new(root, {
         panX: "translateX",
@@ -61,7 +84,7 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
       am5map.MapPolygonSeries.new(root, {
         //geoJSON: am5geodata_usaLow,
         geoJSON: am5geodata_worldLow,
-        include: ['FR', 'AS']
+        include: countryData
       })
     );
 
@@ -85,9 +108,9 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
     });
 
     chart.appear(1000, 100);
+  }, [countryData]);
 
-  }, []);
-
+  
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}

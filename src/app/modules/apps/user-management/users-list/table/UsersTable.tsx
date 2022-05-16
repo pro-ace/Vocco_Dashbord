@@ -11,6 +11,7 @@ import {KTCardBody} from '../../../../../../_metronic/helpers'
 
 const UsersTable = () => {
   const users = useQueryResponseData()
+  console.log("1111111111111111111111");
   console.log(users);
   const isLoading = useQueryResponseLoading()
   const data = useMemo(() => users, [users])
