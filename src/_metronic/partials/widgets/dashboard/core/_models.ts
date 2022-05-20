@@ -85,6 +85,7 @@ export interface PremiumUsersByMonthModel {
 
 export interface DownloadsByMonthModel {
   devices: Array<IdCreatedAtModel>
+  lmNumber: number
 }
 
 export interface VocalModel {
@@ -124,6 +125,9 @@ export interface RecordDuration {
   totalRecords: Array<{
     duration: number
     createdAt: Date
+    answers: Array<{
+      duration: number
+    }>
   }>
 }
 

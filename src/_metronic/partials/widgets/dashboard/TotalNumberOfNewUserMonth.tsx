@@ -9,6 +9,7 @@ type Props = {
 
 const TotalNumberOfNewUserMonth: React.FC<Props> = ({className}) => {
 
+  const goal = 50000;
   const [monthTotal, setMonthTotal] = useState<number>(0);
   const [growthPercent, setGrowthPercent] = useState<number>(0);
   
@@ -75,11 +76,11 @@ const TotalNumberOfNewUserMonth: React.FC<Props> = ({className}) => {
         {/* begin::Progress */}
         <div className="d-flex align-items-center flex-column mt-3 w-100">
           <div className="d-flex justify-content-between w-100 mt-auto mb-2">
-            <span className="fw-boldest fs-6 text-dark">{monthTotal} to Goal</span>
-            <span className="fw-bolder fs-6 text-gray-400">{monthTotal * 100 / 50000}%</span>
+            <span className="fw-boldest fs-6 text-dark">{monthTotal} to {goal - monthTotal}</span>
+            <span className="fw-bolder fs-6 text-gray-400">{monthTotal * 100 / goal}%</span>
           </div>
           <div className="h-8px mx-3 w-100 bg-light-success rounded">
-            <div className="bg-success rounded h-8px" style={{width: `${monthTotal * 100 / 50000}%`}}></div>
+            <div className="bg-success rounded h-8px" style={{width: `${monthTotal * 100 / goal}%`}}></div>
           </div>
         </div>
         {/* end::Progress */}

@@ -45,7 +45,7 @@ const LastVocals: React.FC<Props> = ({className}) => {
                 return (
                   <tr key={index}>
                     <td>
-                      <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 text-hover-primary">{eVocal?.title}</a>
+                      <a href="/apps/user-management/users" className="text-gray-800 text-hover-primary">{eVocal?.user.name}</a>
                     </td>
                     <td className="text-end">{eVocal?.answersCount}</td>
                     <td className="text-end">

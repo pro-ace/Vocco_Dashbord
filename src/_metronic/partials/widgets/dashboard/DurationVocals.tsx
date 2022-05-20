@@ -14,6 +14,7 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
   const [totalRecords, setTotalRecords] = useState<Array<{
     duration: number
     createdAt: Date
+    answers: Array<{duration: number}>
   }>>([]);
   const [total, setTotal] =  useState<number>(0);
   const chartRef = useRef<HTMLDivElement | null>(null)
@@ -29,22 +30,28 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
     var date = new Date();
     var dayArray = [];
     var durationArray = [];
+    var answerDurationArray = [];
     var options = { month: 'short'} as const;
     for (var dm = 0 ; dm < 12; dm++){
       let sDay = new Date(date.getFullYear(), dm , 1);
       let eDay = new Date(date.getFullYear(), dm + 1 , 0);
       let duration = 0;
+      let aDuration = 0;
       totalRecords.map((eRecord) => {
         if (new Date(eRecord.createdAt) >= sDay && new Date(eRecord.createdAt) < eDay){
           duration += eRecord.duration * 1;
+          eRecord.answers.map(ea => {
+            aDuration += ea.duration;
+          })
         }
         return true
       });
       durationArray.push(duration);
+      answerDurationArray.push(aDuration);
       dayArray.push(new Intl.DateTimeFormat('en-US', options).format(sDay));
     }
 
-    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight, durationArray, dayArray))
+    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight, durationArray,answerDurationArray, dayArray))
     if (chart) {
       chart.render()
     }
@@ -84,7 +91,7 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
   )
 }
 
-const chartOptions = (chartColor: string, chartHeight: string, durArray: Array<number>, dayArray: Array<string>): ApexOptions => {
+const chartOptions = (chartColor: string, chartHeight: string, durArray: Array<number>, aDurArray: Array<number>, dayArray: Array<string>): ApexOptions => {
   const labelColor = getCSSVariableValue('--bs-gray-500')
   const borderColor = getCSSVariableValue('--bs-gray-200')
   const secondaryColor = getCSSVariableValue('--bs-gray-300')
@@ -98,7 +105,7 @@ const chartOptions = (chartColor: string, chartHeight: string, durArray: Array<n
       },
       {
         name: 'Answer',
-        data: durArray,
+        data: aDurArray,
       },
     ],
     chart: {

@@ -34,7 +34,11 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
         {/* begin::Title */}
         <div className="card-title d-flex flex-column">
           {/* begin::Amount */}
-          <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{todayUsers}</span>
+          <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">
+            <a href="/apps/user-management/users" className='text-white'>
+              {todayUsers}
+            </a>
+          </span>
           {/* end::Amount */}
           {/* begin::Subtitle */}
           <span className="text-gray-400 pt-1 fw-bold fs-6">New users today</span>
@@ -58,7 +62,11 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
           <span className="text-gray-500 flex-grow-1 me-4">Female</span>
           <span className="fw-boldest text-gray-700 text-xxl-end">{mfPercent ? Math.round((mfPercent.female * 100 / mfPercent.total) * 100) / 100 : 0}%</span>
         </div>
-        <span className="fs-6 fw-boldest text-gray-800 d-block mb-2">Today’s Voccers</span>
+        <span className="fs-6 fw-boldest text-gray-800 d-block mb-2">
+          <a href="/apps/user-management/users" className='text-white'>
+            Today’s Voccers
+          </a>
+        </span>
         {/* end::Title */}
         {/* begin::Users group */}
         <div className="symbol-group symbol-hover flex-nowrap">

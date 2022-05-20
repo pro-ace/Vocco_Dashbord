@@ -4,6 +4,7 @@ import {useQueryResponseLoading, useQueryResponsePagination} from '../../core/Qu
 import {useQueryRequest} from '../../core/QueryRequestProvider'
 const UsersListPagination = () => {
   const pagination = useQueryResponsePagination()
+  console.log("pagination", pagination);
   const isLoading = useQueryResponseLoading()
   const {updateState} = useQueryRequest()
   const updatePage = (page: number | null) => {

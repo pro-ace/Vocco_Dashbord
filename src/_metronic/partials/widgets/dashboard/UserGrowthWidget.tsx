@@ -21,7 +21,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
     if (!chartRef.current) {
       return
     }
-    if (!totalRecords || !funRecords || !adultsRecords || !educationRecords){
+    if (totalRecords == null || funRecords == null || adultsRecords == null || educationRecords == null){
       return
     }
     const chart = new ApexCharts(
