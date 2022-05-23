@@ -10,7 +10,8 @@ import {
   LastVocalsModel,
   UsersByCountry,
   RecordDuration,
-  countriesModel
+  countriesModel,
+  topUserModel
 } from './_models'
 
 
@@ -67,4 +68,8 @@ export function getRecordsDuration() {
 
 export function getCountries() {
   return axios.get<countriesModel>(`${ADMIN_API_URL}/getcountries`);
+}
+
+export function getTopUsers() {
+  return axios.get<topUserModel>(`${ADMIN_API_URL}/getrecordsgbyuser`);
 }

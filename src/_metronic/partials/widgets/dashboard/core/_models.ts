@@ -136,3 +136,13 @@ export interface countriesModel {
     country: string
   }>
 }
+
+export interface topUserModel {
+  data: Array<{
+    user_email: string
+    user_name: string
+    user_id: string
+    likes_sum: number
+    reaction_sum: number
+  }>
+}
