@@ -36,8 +36,6 @@ const QueryResponseProvider: FC = ({children}) => {
     },
     {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )
-  console.log("response query Response provider");
-  console.log(isFetching, refetch, getUsers(query));
 
   return (
     <QueryResponseContext.Provider value={{isLoading: isFetching, refetch, response, query}}>
@@ -64,7 +62,6 @@ const useQueryResponsePagination = () => {
   }
 
   const {response} = useQueryResponse()
-  console.log(response, "response");
   if (!response || !response.payload || !response.payload.pagination) {
     return defaultPaginationState
   }
