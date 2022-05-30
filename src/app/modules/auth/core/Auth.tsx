@@ -17,7 +17,7 @@ type AuthContextProps = {
   auth: AuthModel | undefined
   saveAuth: (auth: AuthModel | undefined) => void
   currentUser: UserModel | undefined
-  setCurrentUser: Dispatch<SetStateAction<UserModel | undefined>>
+  setCurrentUser: (user: UserModel | undefined) => void
   logout: () => void
 }
 
@@ -85,8 +85,8 @@ const AuthInit: FC = ({children}) => {
       return () => (didRequest.current = true)
     }
 
-    if (auth && auth.api_token) {
-      requestUser(auth.api_token)
+    if (auth && auth.accessToken) {
+      requestUser(auth.accessToken)
     } else {
       logout()
       setShowSplashScreen(false)

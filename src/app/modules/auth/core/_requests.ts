@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {AuthModel, UserModel} from './_models'
 
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_ADMIN_API_URL
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
 export const LOGIN_URL = `${API_URL}/login`
@@ -13,6 +13,7 @@ export function login(email: string, password: string) {
   return axios.post<AuthModel>(LOGIN_URL, {
     email,
     password,
+    isAdmin: true
   })
 }
 
@@ -43,5 +44,11 @@ export function requestPassword(email: string) {
 export function getUserByToken(token: string) {
   return axios.post<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {
     api_token: token,
+  })
+}
+
+export function getUserByID(id: string) {
+  return axios.post<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {
+    api_token: id,
   })
 }

@@ -36,18 +36,22 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
       let sDay = new Date(date.getFullYear(), dm , 1);
       let eDay = new Date(date.getFullYear(), dm + 1 , 0);
       let duration = 0;
+      let durationCount = 0;
       let aDuration = 0;
+      let ansersNumber = 0;
       totalRecords.map((eRecord) => {
         if (new Date(eRecord.createdAt) >= sDay && new Date(eRecord.createdAt) < eDay){
           duration += eRecord.duration * 1;
+          durationCount++;
           eRecord.answers.map(ea => {
             aDuration += ea.duration;
+            ansersNumber++;
           })
         }
         return true
       });
-      durationArray.push(duration);
-      answerDurationArray.push(aDuration);
+      durationArray.push(durationCount ? Math.round(duration / durationCount) : 0);
+      answerDurationArray.push(ansersNumber ? Math.round(aDuration / ansersNumber) : 0);
       dayArray.push(new Intl.DateTimeFormat('en-US', options).format(sDay));
     }
 

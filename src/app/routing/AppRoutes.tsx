@@ -9,7 +9,7 @@ import {FC} from 'react'
 import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import {PrivateRoutes} from './PrivateRoutes'
 import {ErrorsPage} from '../modules/errors/ErrorsPage'
-import {Logout, AuthPage} from '../modules/auth'
+import {Logout, AuthPage, useAuth} from '../modules/auth'
 import {App} from '../App'
 
 /**
@@ -22,8 +22,8 @@ import {App} from '../App'
 // console.log("PUBLIC_URL", process.env);
 
 const AppRoutes: FC = () => {
-  // const {currentUser} = useAuth()
-  const currentUser = true
+  const {currentUser} = useAuth()
+  // const currentUser = true
   return (
     <BrowserRouter basename={"/"}>
       <Routes>
