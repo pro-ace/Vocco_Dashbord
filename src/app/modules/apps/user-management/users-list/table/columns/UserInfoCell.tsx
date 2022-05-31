@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx'
 import {FC} from 'react'
+import { Link } from 'react-router-dom'
 import {User} from '../../core/_models'
 
 type Props = {
-  user: User
+  user: User,
 }
 
 const UserInfoCell: FC<Props> = ({user}) => (
@@ -14,7 +15,9 @@ const UserInfoCell: FC<Props> = ({user}) => (
       <a href='#'>
         {user.avatar ? (
           <div className='symbol-label'>
-            <img src={`${user.avatar.url}`} alt={user.name} className='w-100' />
+            <Link to={`profile/${user.id}`}>
+              <img src={`${user.avatar.url}`} alt={user.name} className='w-100' />
+            </Link>
           </div>
         ) : (
           <div

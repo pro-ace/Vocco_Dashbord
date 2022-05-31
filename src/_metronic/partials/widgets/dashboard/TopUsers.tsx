@@ -11,7 +11,6 @@ const TopUsers: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getTopUsers();
-      console.log(res);
       setTopUsers(res);
     }
     fetchData()

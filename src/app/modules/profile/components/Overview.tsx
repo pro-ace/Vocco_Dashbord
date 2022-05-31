@@ -9,11 +9,12 @@ import {
   ListsWidget5,
   ListsWidget2,
 } from '../../../../_metronic/partials/widgets'
+import { ProfileHeader } from '../ProfileHeader'
 
 export function Overview() {
   return (
     <div className='row g-5 g-xxl-8'>
-      <div className='col-xl-6'>
+      {/* <div className='col-xl-6'>
         <FeedsWidget2 className='mb-5 mb-xxl-8' />
 
         <FeedsWidget3 className='mb-5 mb-xxl-8' />
@@ -31,7 +32,8 @@ export function Overview() {
         <ListsWidget5 className='mb-5 mb-xxl-8' />
 
         <ListsWidget2 className='mb-5 mb-xxl-8' />
-      </div>
+      </div> */}
+      <ProfileHeader />
     </div>
   )
 }

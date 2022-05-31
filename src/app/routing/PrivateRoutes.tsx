@@ -1,10 +1,12 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
+import { lazy, FC, Suspense } from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {MenuTestPage} from '../pages/MenuTestPage'
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
+import { MenuTestPage } from '../pages/MenuTestPage'
+import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
+import { ProfileHeader } from '../modules/profile/ProfileHeader'
+import UsersProfilePage from '../modules/apps/user-management/UsersProfilePage'
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -73,6 +75,14 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+        <Route
+          path='apps/user-management/users/profile/:id'
+          element={
+            <SuspensedView>
+              <UsersProfilePage />
+            </SuspensedView>
+          }
+        />
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
@@ -80,7 +90,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC = ({children}) => {
+const SuspensedView: FC = ({ children }) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -92,4 +102,4 @@ const SuspensedView: FC = ({children}) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export {PrivateRoutes}
+export { PrivateRoutes }

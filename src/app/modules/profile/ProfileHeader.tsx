@@ -1,228 +1,162 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../_metronic/helpers'
-import {Link} from 'react-router-dom'
-import {Dropdown1} from '../../../_metronic/partials'
-import {useLocation} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import {useParams} from 'react-router-dom'
+import { getUserInfo } from './core/_requests'
+import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
-  const location = useLocation()
+  const {id: userId} = useParams();
+  // const userId = '1610e2f9-4fec-4f80-8015-056f985b709f';
+  const [firstname, setFirstname] = useState<string>('');
+  const [lastname, setLastname] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [dob, setDob] = useState<Date>();
+  const [gender, setGender] = useState<string>('');
+  const [country, setCountry] = useState<string>('');
+  const [premium, setPremium] = useState<string>('');
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
+  const [avatarLink, setAvatarLink] = useState<string>('');
+
+  useEffect(() =>{
+    const fetchData = async () => {
+      const {data: res} = await getUserInfo(userId ? userId : '');
+      setFirstname(res.data.firstname);
+      setLastname(res.data.lastname);
+      setName(res.data.name);
+      setEmail(res.data.email);
+      setDob(res.data.dob);
+      setGender(res.data.gender);
+      setCountry(res.data.country);
+      setPremium(res.data.premium);
+      setAvatarUrl(res.data.avatar.url);
+      setAvatarLink(res.data.avatar.link);
+    }
+    // call the function
+    fetchData()
+      .catch(console.error);
+  }, [])
 
   return (
-    <div className='card mb-5 mb-xl-10'>
-      <div className='card-body pt-9 pb-0'>
-        <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
-          <div className='me-7 mb-4'>
-            <div className='symbol symbol-100px symbol-lg-160px symbol-fixed position-relative'>
-              <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='Metornic' />
-              <div className='position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px'></div>
-            </div>
-          </div>
-
-          <div className='flex-grow-1'>
-            <div className='d-flex justify-content-between align-items-start flex-wrap mb-2'>
-              <div className='d-flex flex-column'>
-                <div className='d-flex align-items-center mb-2'>
-                  <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
-                    Max Smith
-                  </a>
-                  <a href='#'>
-                    <KTSVG
-                      path='/media/icons/duotune/general/gen026.svg'
-                      className='svg-icon-1 svg-icon-primary'
-                    />
-                  </a>
-                </div>
-
-                <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                  <a
-                    href='#'
-                    className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                  >
-                    <KTSVG
-                      path='/media/icons/duotune/communication/com006.svg'
-                      className='svg-icon-4 me-1'
-                    />
-                    Developer
-                  </a>
-                  <a
-                    href='#'
-                    className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                  >
-                    <KTSVG
-                      path='/media/icons/duotune/general/gen018.svg'
-                      className='svg-icon-4 me-1'
-                    />
-                    SF, Bay Area
-                  </a>
-                  <a
-                    href='#'
-                    className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
-                  >
-                    <KTSVG
-                      path='/media/icons/duotune/communication/com011.svg'
-                      className='svg-icon-4 me-1'
-                    />
-                    max@kt.com
-                  </a>
-                </div>
-              </div>
-
-              <div className='d-flex my-4'>
-                <a href='#' className='btn btn-sm btn-light me-2' id='kt_user_follow_button'>
-                  <KTSVG
-                    path='/media/icons/duotune/arrows/arr012.svg'
-                    className='svg-icon-3 d-none'
-                  />
-
-                  <span className='indicator-label'>Follow</span>
-                  <span className='indicator-progress'>
-                    Please wait...
-                    <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-                  </span>
-                </a>
-                <a
-                  href='#'
-                  className='btn btn-sm btn-primary me-3'
-                  data-bs-toggle='modal'
-                  data-bs-target='#kt_modal_offer_a_deal'
-                >
-                  Hire Me
-                </a>
-                <div className='me-0'>
-                  <button
-                    className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
-                    data-kt-menu-trigger='click'
-                    data-kt-menu-placement='bottom-end'
-                    data-kt-menu-flip='top-end'
-                  >
-                    <i className='bi bi-three-dots fs-3'></i>
-                  </button>
-                  <Dropdown1 />
-                </div>
-              </div>
-            </div>
-
-            <div className='d-flex flex-wrap flex-stack'>
-              <div className='d-flex flex-column flex-grow-1 pe-8'>
-                <div className='d-flex flex-wrap'>
-                  <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
-                    <div className='d-flex align-items-center'>
-                      <KTSVG
-                        path='/media/icons/duotune/arrows/arr066.svg'
-                        className='svg-icon-3 svg-icon-success me-2'
-                      />
-                      <div className='fs-2 fw-bolder'>4500$</div>
-                    </div>
-
-                    <div className='fw-bold fs-6 text-gray-400'>Earnings</div>
+    <div className="post d-flex flex-column-fluid" id="kt_post">
+      <div id="kt_content_container" className="container-xxl">
+        <div className="d-flex flex-column flex-xl-row">
+          {/* <!--begin::Sidebar--> */}
+          <div className="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10">
+            <div className="card mb-5 mb-xl-8">
+              <div className="card-body pt-15">
+                <div className="d-flex flex-center flex-column mb-5">
+                  <div className="symbol symbol-150px symbol-circle mb-7">
+                    <img src={avatarUrl} alt="image" />
                   </div>
-
-                  <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
-                    <div className='d-flex align-items-center'>
-                      <KTSVG
-                        path='/media/icons/duotune/arrows/arr065.svg'
-                        className='svg-icon-3 svg-icon-danger me-2'
-                      />
-                      <div className='fs-2 fw-bolder'>75</div>
-                    </div>
-
-                    <div className='fw-bold fs-6 text-gray-400'>Projects</div>
-                  </div>
-
-                  <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
-                    <div className='d-flex align-items-center'>
-                      <KTSVG
-                        path='/media/icons/duotune/arrows/arr066.svg'
-                        className='svg-icon-3 svg-icon-success me-2'
-                      />
-                      <div className='fs-2 fw-bolder'>60%</div>
-                    </div>
-
-                    <div className='fw-bold fs-6 text-gray-400'>Success Rate</div>
-                  </div>
+                  <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{firstname} {lastname}</a>
+                  <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{name}</a>
                 </div>
-              </div>
-
-              <div className='d-flex align-items-center w-200px w-sm-300px flex-column mt-3'>
-                <div className='d-flex justify-content-between w-100 mt-auto mb-2'>
-                  <span className='fw-bold fs-6 text-gray-400'>Profile Compleation</span>
-                  <span className='fw-bolder fs-6'>50%</span>
+                <div className="d-flex flex-stack fs-4 py-3">
+                  <div className="fw-bolder">Details</div>
+                  {premium !== 'none' ? <div className="badge badge-light-info d-inline">Premium user</div> : null}
                 </div>
-                <div className='h-5px mx-3 w-100 bg-light mb-3'>
-                  <div
-                    className='bg-success rounded h-5px'
-                    role='progressbar'
-                    style={{width: '50%'}}
-                  ></div>
+                <div className="separator separator-dashed my-3"></div>
+                <div className="pb-5 fs-6">
+                  <div className="fw-bolder mt-5">EMAIL</div>
+                  <div className="text-gray-600">
+                    <a href="#" className="text-gray-600 text-hover-primary">{email}</a>
+                  </div>
+                  <div className="fw-bolder mt-5">COUNTRY</div>
+                  <div className="text-gray-600">{country}</div>
+                  <div className="fw-bolder mt-5">GENDER</div>
+                  <div className="text-gray-600">{gender === 'm' ? 'Male' : (gender === 'f' ? 'Female' : null)}</div>
+                  <div className="fw-bolder mt-5">BIRTHDAY</div>
+                  <div className="text-gray-600">{dob ? new Date(dob).toDateString() : null}</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className='d-flex overflow-auto h-55px'>
-          <ul className='nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap'>
-            <li className='nav-item'>
-              <Link
-                className={
-                  `nav-link text-active-primary me-6 ` +
-                  (location.pathname === '/crafted/pages/profile/overview' && 'active')
-                }
-                to='/crafted/pages/profile/overview'
-              >
-                Overview
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                className={
-                  `nav-link text-active-primary me-6 ` +
-                  (location.pathname === '/crafted/pages/profile/projects' && 'active')
-                }
-                to='/crafted/pages/profile/projects'
-              >
-                Projects
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                className={
-                  `nav-link text-active-primary me-6 ` +
-                  (location.pathname === '/crafted/pages/profile/campaigns' && 'active')
-                }
-                to='/crafted/pages/profile/campaigns'
-              >
-                Campaigns
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                className={
-                  `nav-link text-active-primary me-6 ` +
-                  (location.pathname === '/crafted/pages/profile/documents' && 'active')
-                }
-                to='/crafted/pages/profile/documents'
-              >
-                Documents
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                className={
-                  `nav-link text-active-primary me-6 ` +
-                  (location.pathname === '/crafted/pages/profile/connections' && 'active')
-                }
-                to='/crafted/pages/profile/connections'
-              >
-                Connections
-              </Link>
-            </li>
-          </ul>
+          {/* <!--end::Sidebar--> */}
+          {/* <!--begin::Content--> */}
+          <div className="flex-lg-row-fluid ms-lg-15">
+            {/* <!--begin:::Tab content--> */}
+            <div className="tab-content" id="myTabContent">
+              {/* <!--begin:::Tab Overview--> */}
+              <div className="tab-pane fade show active" id="kt_ecommerce_customer_overview" role="tabpanel">
+                <div className="row row-cols-1 row-cols-md-2 mb-6 mb-xl-9">
+                  <div className="col">
+                    {/* <!--begin::Reward Point Card--> */}
+                    <div className="card pt-4 h-md-100 mb-6 mb-md-0">
+                      <div className="card-header border-0">
+                        <div className="card-title">
+                          <h2 className="fw-bolder">Reward Points</h2>
+                        </div>
+                      </div>
+                      <div className="card-body pt-0">
+                        <div className="fw-bolder fs-2">
+                          <div className="d-flex">
+                            <span className="svg-icon svg-icon-info svg-icon-2x">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
+                              </svg>
+                            </span>
+                            <div className="ms-2">4,571<span className="text-muted fs-4 fw-bold">Points earned</span></div>
+                          </div>
+                          <div className="fs-7 fw-normal text-muted">Earn reward points with every purchase.</div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <!--end::Reward Point Card--> */}
+                  </div>
+                  <div className="col">
+                    {/* <!--begin::Reward Tier--> */}
+                    { premium !== 'none' ?
+                      <a href="#" className="card bg-info hoverable h-md-100">
+                        <div className="card-body">
+                          <span className="svg-icon svg-icon-white svg-icon-3x ms-n1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M14 18V16H10V18L9 20H15L14 18Z" fill="currentColor" />
+                              <path opacity="0.3" d="M20 4H17V3C17 2.4 16.6 2 16 2H8C7.4 2 7 2.4 7 3V4H4C3.4 4 3 4.4 3 5V9C3 11.2 4.8 13 7 13C8.2 14.2 8.8 14.8 10 16H14C15.2 14.8 15.8 14.2 17 13C19.2 13 21 11.2 21 9V5C21 4.4 20.6 4 20 4ZM5 9V6H7V11C5.9 11 5 10.1 5 9ZM19 9C19 10.1 18.1 11 17 11V6H19V9ZM17 21V22H7V21C7 20.4 7.4 20 8 20H16C16.6 20 17 20.4 17 21ZM10 9C9.4 9 9 8.6 9 8V5C9 4.4 9.4 4 10 4C10.6 4 11 4.4 11 5V8C11 8.6 10.6 9 10 9ZM10 13C9.4 13 9 12.6 9 12V11C9 10.4 9.4 10 10 10C10.6 10 11 10.4 11 11V12C11 12.6 10.6 13 10 13Z" fill="currentColor" />
+                            </svg>
+                          </span>
+                          <div className="text-white fw-bolder fs-2 mt-5">Premium Member</div>
+                          <div className="fw-bold text-white">{premium.toUpperCase()}</div>
+                        </div>
+                      </a> :
+                      <a href="#" className="card h-md-100">
+                        <div className="card-body">
+                          <span className="svg-icon svg-icon-white svg-icon-3x ms-n1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M14 18V16H10V18L9 20H15L14 18Z" fill="currentColor" />
+                              <path opacity="0.3" d="M20 4H17V3C17 2.4 16.6 2 16 2H8C7.4 2 7 2.4 7 3V4H4C3.4 4 3 4.4 3 5V9C3 11.2 4.8 13 7 13C8.2 14.2 8.8 14.8 10 16H14C15.2 14.8 15.8 14.2 17 13C19.2 13 21 11.2 21 9V5C21 4.4 20.6 4 20 4ZM5 9V6H7V11C5.9 11 5 10.1 5 9ZM19 9C19 10.1 18.1 11 17 11V6H19V9ZM17 21V22H7V21C7 20.4 7.4 20 8 20H16C16.6 20 17 20.4 17 21ZM10 9C9.4 9 9 8.6 9 8V5C9 4.4 9.4 4 10 4C10.6 4 11 4.4 11 5V8C11 8.6 10.6 9 10 9ZM10 13C9.4 13 9 12.6 9 12V11C9 10.4 9.4 10 10 10C10.6 10 11 10.4 11 11V12C11 12.6 10.6 13 10 13Z" fill="currentColor" />
+                            </svg>
+                          </span>
+                          <div className="text-white fw-bolder fs-2 mt-8">Member</div>
+                        </div>
+                      </a>
+                    }
+                    {/* <!--end::Reward Tier--> */}
+                  </div>
+                </div>
+                {/* <!--begin::Transaction History Table--> */}
+                <div className="card pt-4 mb-6 mb-xl-9">
+                  <div className="card-header border-0">
+                    <div className="card-title">
+                      <h2>Transaction History</h2>
+                    </div>
+                  </div>
+                  <div className="card-body pt-0 pb-5">
+                    <THSListWrapper userId = {userId ? userId : ''} />
+                  </div>
+                  {/* <!--end::Transaction History Card body--> */}
+                </div>
+                {/* <!--end::Transaction History Table--> */}
+              </div>
+              {/* <!--end:::Tab Overview--> */}
+            </div>
+            {/* <!--end:::Tab content--> */}
+          </div>
+          {/* <!--end::Content--> */}
         </div>
       </div>
     </div>
   )
 }
 
-export {ProfileHeader}
+export { ProfileHeader }

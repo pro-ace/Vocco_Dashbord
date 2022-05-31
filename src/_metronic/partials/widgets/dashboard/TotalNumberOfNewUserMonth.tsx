@@ -19,12 +19,9 @@ const TotalNumberOfNewUserMonth: React.FC<Props> = ({className}) => {
       setMonthTotal(res.count);
       setGrowthPercent(res.growthPercent);
     }
-  
     // call the function
     fetchData()
       .catch(console.error);
-
-
   }, [])
 
   return (
