@@ -22,8 +22,7 @@ import {App} from '../App'
 // console.log("PUBLIC_URL", process.env);
 
 const AppRoutes: FC = () => {
-  const {currentUser} = useAuth()
-  // const currentUser = true
+  let {currentUser} = useAuth()
   return (
     <BrowserRouter basename={"/"}>
       <Routes>
