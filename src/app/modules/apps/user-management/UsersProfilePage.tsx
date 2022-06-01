@@ -1,7 +1,5 @@
-import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
 import { PageLink, PageTitle } from '../../../../_metronic/layout/core'
 import { ProfileHeader } from '../../profile/ProfileHeader'
-import { UsersListWrapper } from './users-list/UsersList'
 
 const usersBreadcrumbs: Array<PageLink> = [
     {

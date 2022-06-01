@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import {ColumnInstance} from 'react-table'
-import {TransactionHistory, User} from '../../core/_models'
+import {TransactionHistory} from '../../core/_models'
 
 type Props = {
   column: ColumnInstance<TransactionHistory>

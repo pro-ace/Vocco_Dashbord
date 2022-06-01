@@ -6,7 +6,6 @@ import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
-  // const userId = '1610e2f9-4fec-4f80-8015-056f985b709f';
   const [firstname, setFirstname] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -16,7 +15,6 @@ const ProfileHeader: React.FC = () => {
   const [country, setCountry] = useState<string>('');
   const [premium, setPremium] = useState<string>('');
   const [avatarUrl, setAvatarUrl] = useState<string>('');
-  const [avatarLink, setAvatarLink] = useState<string>('');
 
   useEffect(() =>{
     const fetchData = async () => {
@@ -30,12 +28,11 @@ const ProfileHeader: React.FC = () => {
       setCountry(res.data.country);
       setPremium(res.data.premium);
       setAvatarUrl(res.data.avatar.url);
-      setAvatarLink(res.data.avatar.link);
     }
     // call the function
     fetchData()
       .catch(console.error);
-  }, [])
+  }, [userId])
 
   return (
     <div className="post d-flex flex-column-fluid" id="kt_post">
@@ -47,7 +44,7 @@ const ProfileHeader: React.FC = () => {
               <div className="card-body pt-15">
                 <div className="d-flex flex-center flex-column mb-5">
                   <div className="symbol symbol-150px symbol-circle mb-7">
-                    <img src={avatarUrl} alt="image" />
+                    <img src={avatarUrl} alt="avatar link" />
                   </div>
                   <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{firstname} {lastname}</a>
                   <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{name}</a>

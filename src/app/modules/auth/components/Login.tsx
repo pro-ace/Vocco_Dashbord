@@ -2,10 +2,8 @@
 import {useState} from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
-import {Link} from 'react-router-dom'
 import {useFormik} from 'formik'
-import {getUserByToken, login} from '../core/_requests'
-import {toAbsoluteUrl} from '../../../../_metronic/helpers'
+import {login} from '../core/_requests'
 import {useAuth} from '../core/Auth'
 import {Alert} from 'react-bootstrap'
 

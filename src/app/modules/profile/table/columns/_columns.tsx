@@ -1,6 +1,6 @@
 import { Column } from 'react-table'
 import { UserCustomHeader } from './UserCustomHeader'
-import { TransactionHistory, User } from '../../core/_models'
+import { TransactionHistory } from '../../core/_models'
 import { Title } from './Title'
 import { Category } from './Category'
 import { Duration } from './Duration'

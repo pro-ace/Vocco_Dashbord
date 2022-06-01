@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import {FC} from 'react'
 import {Row} from 'react-table'
-import {TransactionHistory, User} from '../../core/_models'
+import {TransactionHistory} from '../../core/_models'
 
 type Props = {
   row: Row<TransactionHistory>

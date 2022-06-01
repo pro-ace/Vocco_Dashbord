@@ -116,7 +116,6 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
       let date = new Date();
       let ysDay = new Date(date.getFullYear(), date.getMonth() , date.getDate() - 1);
       let yeDay = new Date(date.getFullYear(), date.getMonth() , date.getDate());
-      let neDay = new Date(date.getFullYear(), date.getMonth() , date.getDate() + 1);
       res.users.map((user) => {
         console.log(user);
         if (new Date(user.createdAt) >= ysDay && new Date(user.createdAt) < yeDay){
