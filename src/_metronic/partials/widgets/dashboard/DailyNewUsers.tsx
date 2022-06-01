@@ -85,10 +85,11 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
               )
             })
           }
-          
-          <a href="#" className="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-            <span className="symbol-label bg-light text-gray-400 fs-8 fw-bolder">+{totalUsers * 1 - 6}</span>
-          </a>
+          {totalUsers > 6 ? 
+            <a href="#" className="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
+              <span className="symbol-label bg-light text-gray-400 fs-8 fw-bolder">+{totalUsers * 1 - 6}</span>
+            </a> : <></>
+          }
         </div>
         {/* end::Users group */}
       </div>
