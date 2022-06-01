@@ -7,6 +7,7 @@ import {useFormik} from 'formik'
 import {getUserByToken, login} from '../core/_requests'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {useAuth} from '../core/Auth'
+import {Alert} from 'react-bootstrap'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,6 +35,7 @@ const initialValues = {
 export function Login() {
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
+  const [alert, setAlert] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -48,6 +50,8 @@ export function Login() {
         }
         setCurrentUser(user)
       } catch (error) {
+        // <Alert variant="success">The login detail is incorrect</Alert>
+        setAlert(true);
         console.error(error)
         saveAuth(undefined)
         setStatus('The login detail is incorrect')
@@ -137,6 +141,11 @@ export function Login() {
       {/* end::Form group */}
 
       {/* begin::Action */}
+      {alert ? 
+        <Alert variant="danger">Opps! The login detail is incorrect. Please try again.</Alert>
+        : 
+        <></>
+      }
       <div className='text-center'>
         <button
           type='submit'
