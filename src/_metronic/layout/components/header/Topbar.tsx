@@ -113,7 +113,7 @@ const Topbar: FC = () => {
           data-kt-menu-placement='bottom-end'
           data-kt-menu-flip='bottom'
         >
-          <img src={toAbsoluteUrl('/media/avatars/blank.png')} alt='metronic' />
+          <img src={toAbsoluteUrl('/media/avatars/confused_dog.gif')} alt='metronic' />
         </div>
         <HeaderUserMenu />
         {/* end::Toggle */}
