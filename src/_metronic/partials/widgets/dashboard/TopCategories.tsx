@@ -99,7 +99,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                   <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" />
                                 </td>
                                 <td className="ps-0">
-                                  <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</a>
+                                  <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                   <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>
                                 </td>
                                 <td>
@@ -122,7 +122,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                   <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" />
                                 </td>
                                 <td className="ps-0">
-                                  <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</a>
+                                  <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                   <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>
                                 </td>
                                 <td>
@@ -145,7 +145,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                   <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" />
                                 </td>
                                 <td className="ps-0">
-                                  <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</a>
+                                  <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                   <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>
                                 </td>
                                 <td>
@@ -168,7 +168,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                   <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" />
                                 </td>
                                 <td className="ps-0">
-                                  <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</a>
+                                  <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                   <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>
                                 </td>
                                 <td>
@@ -191,7 +191,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                   <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" />
                                 </td>
                                 <td className="ps-0">
-                                  <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</a>
+                                  <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                   <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>
                                 </td>
                                 <td>

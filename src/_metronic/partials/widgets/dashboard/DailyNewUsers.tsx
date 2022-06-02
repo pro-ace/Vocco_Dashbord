@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect, useState} from 'react'
+import {Link} from 'react-router-dom'
 import {getusersdaily} from './core/_requests'
 import { UserModel, MFPercentModel } from './core/_models';
 
@@ -63,9 +64,9 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
           <span className="fw-boldest text-gray-700 text-xxl-end">{mfPercent ? Math.round((mfPercent.female * 100 / mfPercent.total) * 100) / 100 : 0}%</span>
         </div>
         <span className="fs-6 fw-boldest text-gray-800 d-block mb-2">
-          <a href="/apps/user-management/users" className='text-white'>
+          <Link to='/apps/user-management/users' className='text-white'>
             Today’s Voccers
-          </a>
+          </Link>
         </span>
         {/* end::Title */}
         {/* begin::Users group */}

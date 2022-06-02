@@ -44,7 +44,7 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
           duration += eRecord.duration * 1;
           durationCount++;
           eRecord.answers.map(ea => {
-            aDuration += ea.duration;
+            aDuration += ea.duration * 1;
             ansersNumber++;
           })
         }

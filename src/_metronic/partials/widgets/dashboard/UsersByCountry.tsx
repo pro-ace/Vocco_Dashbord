@@ -7,34 +7,13 @@ type Props = {
 }
 
 type CountryData = {
-  US: {
-    y: number,
-    t: number
-  },
-  UK: {
-    y: number,
-    t: number
-  },
-  FR: {
-    y: number,
-    t: number
-  },
-  CA: {
-    y: number,
-    t: number
-  },
-  BE: {
-    y: number,
-    t: number
-  },
-  GE: {
-    y: number,
-    t: number
-  },
-  SP: {
-    y: number,
-    t: number
-  }
+  US: number,
+  UK: number,
+  FR: number,
+  CA: number,
+  BE: number,
+  GE: number,
+  SP: number
 }
 
 const countries = [
@@ -77,63 +56,31 @@ const countries = [
 
 const UsersByCountry: React.FC<Props> = ({className}) => {
 
-  const [usersCountryData, setUsersCountryData] = useState<CountryData | null>(null)
+  const [usersCountryData, setUsersCountryData] = useState<CountryData | null>(null);
+  const [totalUsers, setTotalUsers] = useState<number>(0);
 
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getusersbycountry();
       
       let countryData = {
-        "US": {
-          y: 0,
-          t: 0
-        },
-        "UK": {
-          y: 0,
-          t: 0
-        },
-        "FR": {
-          y: 0,
-          t: 0
-        },
-        "SP": {
-          y: 0,
-          t: 0
-        },
-        "BE": {
-          y: 0,
-          t: 0
-        },
-        "GE": {
-          y: 0,
-          t: 0
-        },
-        "CA": {
-          y: 0,
-          t: 0
-        }
+        "US": 0,
+        "UK": 0,
+        "FR": 0,
+        "SP": 0,
+        "BE": 0,
+        "GE": 0,
+        "CA": 0
       }
-      let date = new Date();
-      let ysDay = new Date(date.getFullYear(), date.getMonth() , date.getDate() - 1);
-      let yeDay = new Date(date.getFullYear(), date.getMonth() , date.getDate());
+      setTotalUsers(res.users.length);
       res.users.map((user) => {
-        if (new Date(user.createdAt) >= ysDay && new Date(user.createdAt) < yeDay){
-          if (user.country === "United States") countryData.US.y++;
-          if (user.country === "United Kingdom") countryData.UK.y++;
-          if (user.country === "Canada") countryData.CA.y++;
-          if (user.country === "Spain") countryData.SP.y++;
-          if (user.country === "Belgium") countryData.BE.y++;
-          if (user.country === "France") countryData.FR.y++;
-          if (user.country === "Germany") countryData.GE.y++;
-        } 
-        if (user.country === "United States") countryData.US.t++;
-        if (user.country === "United Kingdom") countryData.UK.t++;
-        if (user.country === "Canada") countryData.CA.t++;
-        if (user.country === "Spain") countryData.SP.t++;
-        if (user.country === "Belgium") countryData.BE.t++;
-        if (user.country === "France") countryData.FR.t++;
-        if (user.country === "Germany") countryData.GE.t++;
-
+        if (user.country === "United States") countryData.US++;
+        if (user.country === "United Kingdom") countryData.UK++;
+        if (user.country === "Canada") countryData.CA++;
+        if (user.country === "Spain") countryData.SP++;
+        if (user.country === "Belgium") countryData.BE++;
+        if (user.country === "France") countryData.FR++;
+        if (user.country === "Germany") countryData.GE++;
         return true;
       })
       setUsersCountryData(countryData);
@@ -167,38 +114,38 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
                       <span className="text-gray-800 fw-bolder fs-6 me-3 d-block">
                         {
                           eCountry.ab === "US" ? 
-                          usersCountryData?.US.t :
+                          usersCountryData?.US :
                           eCountry.ab === "UK" ? 
-                          usersCountryData?.UK.t :
+                          usersCountryData?.UK :
                           eCountry.ab === "CA" ? 
-                          usersCountryData?.CA.t :
+                          usersCountryData?.CA :
                           eCountry.ab === "FR" ? 
-                          usersCountryData?.FR.t :
+                          usersCountryData?.FR:
                           eCountry.ab === "BE" ? 
-                          usersCountryData?.BE.t :
+                          usersCountryData?.BE :
                           eCountry.ab === "SP" ? 
-                          usersCountryData?.SP.t :
+                          usersCountryData?.SP :
                           eCountry.ab === "GE" ? 
-                          usersCountryData?.GE.t : 0
+                          usersCountryData?.GE : 0
                         }
                       </span>
                       <div className="m-0">
                         <span className="badge badge-success fs-base">
                           {
                             eCountry.ab === "US" ? 
-                            usersCountryData?.US.t && usersCountryData?.US.y ? Math.round(((usersCountryData?.US.t - usersCountryData?.US.y) * 100 / usersCountryData?.US.y) * 100) / 100  :  usersCountryData?.US.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.US ? Math.round((usersCountryData?.US * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "UK" ? 
-                            usersCountryData?.UK.t && usersCountryData?.UK.y ? Math.round(((usersCountryData?.UK.t - usersCountryData?.UK.y) * 100 / usersCountryData?.UK.y) * 100) / 100  : usersCountryData?.UK.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.UK ? Math.round((usersCountryData?.UK * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "CA" ? 
-                            usersCountryData?.CA.t && usersCountryData?.CA.y ? Math.round(((usersCountryData?.CA.t - usersCountryData?.CA.y) * 100 / usersCountryData?.CA.y) * 100) / 100  : usersCountryData?.CA.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.CA ? Math.round((usersCountryData?.CA * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "FR" ? 
-                            usersCountryData?.FR.t && usersCountryData?.FR.y ? Math.round(((usersCountryData?.FR.t - usersCountryData?.FR.y) * 100 / usersCountryData?.FR.y) * 100) / 100  : usersCountryData?.FR.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.FR ? Math.round((usersCountryData?.FR * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "BE" ? 
-                            usersCountryData?.BE.t && usersCountryData?.BE.y ? Math.round(((usersCountryData?.BE.t - usersCountryData?.BE.y) * 100 / usersCountryData?.BE.y) * 100) / 100  : usersCountryData?.BE.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.BE ? Math.round((usersCountryData?.BE * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "SP" ? 
-                            usersCountryData?.SP.t && usersCountryData?.SP.y ? Math.round(((usersCountryData?.SP.t - usersCountryData?.SP.y) * 100 / usersCountryData?.SP.y) * 100) / 100  : usersCountryData?.SP.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.SP ? Math.round((usersCountryData?.SP * 100 / totalUsers) * 100) / 100 : 0 :
                             eCountry.ab === "GE" ? 
-                            usersCountryData?.GE.t && usersCountryData?.GE.y ? Math.round(((usersCountryData?.GE.t - usersCountryData?.GE.y) * 100 / usersCountryData?.GE.y) * 100) / 100  : usersCountryData?.GE.t ? 100 : 0 :
+                            totalUsers && usersCountryData?.GE ? Math.round((usersCountryData?.GE * 100 / totalUsers) * 100) / 100 : 0 :
                             0
                           }{"%"}
                         </span>

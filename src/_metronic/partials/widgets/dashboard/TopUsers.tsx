@@ -30,7 +30,8 @@ const TopUsers: React.FC<Props> = ({className}) => {
           <thead>
             <tr className="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
               <th className="">USERNAME</th>
-              <th className=" min-w-100px">EMAIL</th>
+              <th className=" min-w-100px">CATEGORY</th>
+              <th className=" min-w-100px">DATE</th>
               <th className="text-end">LIKES</th>
               <th className="text-end">REACTIONS</th>
             </tr>
@@ -42,9 +43,10 @@ const TopUsers: React.FC<Props> = ({className}) => {
                 return (
                   <tr key={index}>
                     <td>
-                      <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" className="text-gray-800 text-hover-primary">{eData.user_name}</a>
+                      <span className="text-gray-800 text-hover-primary">{eData.user_name}</span>
                     </td>
-                    <td className="">{eData.user_email}</td>
+                    <td className="">{eData.record.category ? eData.record.category : "Fun"}</td>
+                    <td className="">{new Date(eData.record.createdAt).toDateString()}</td>
                     <td className="text-end">
                       {eData.likes_sum}
                     </td>

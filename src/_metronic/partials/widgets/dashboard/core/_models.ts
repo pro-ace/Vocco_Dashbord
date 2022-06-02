@@ -144,5 +144,9 @@ export interface topUserModel {
     user_id: string
     likes_sum: number
     reaction_sum: number
+    record: {
+      category: string
+      createdAt: Date
+    }
   }>
 }
