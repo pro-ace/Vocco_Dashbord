@@ -11,7 +11,8 @@ import {
   UsersByCountry,
   RecordDuration,
   countriesModel,
-  topUserModel
+  topUserModel,
+  UsersByCountryStatis
 } from './_models'
 
 
@@ -39,7 +40,7 @@ export function getusersbycountry() {
 }
 
 export function getusersstatisticsbycountry() {
-  return axios.get<UsersByCountry>(`${ADMIN_API_URL}/getusersstatisticsbycountry`);
+  return axios.get<UsersByCountryStatis>(`${ADMIN_API_URL}/getusersstatisticsbycountry`);
 }
 
 export function getpremiumusersbymonth() {

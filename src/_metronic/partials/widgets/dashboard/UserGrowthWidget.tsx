@@ -11,22 +11,22 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
 
   const [subscribeCount, setSubscribeCount] = useState<number>(0);
   const [growthPercent, setGrowthPercent] = useState<number>(0);
-  const [totalRecords, setTotalRecords] = useState<number | null>(null);
-  const [funRecords, setFunRecords] = useState<number | null>(null);
-  const [adultsRecords, setAdultsRecords] = useState<number | null>(null);
-  const [educationRecords, setEducationRecords] = useState<number | null>(null);
-  const chartRef = useRef<HTMLDivElement | null>(null)
+  const [totalUsers, setTotalUsers] = useState<number>(0);
+  const [male, setMale] = useState<number>(0);
+  const [female, setFemale] = useState<number>(0);
+  const [other, setOther] = useState<number>(0);
+  const chartRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!chartRef.current) {
       return
     }
-    if (totalRecords == null || funRecords == null || adultsRecords == null || educationRecords == null){
+    if (totalUsers == null || male == null || female == null || other == null){
       return
     }
     const chart = new ApexCharts(
       chartRef.current,
-      chartOptions(totalRecords, funRecords, adultsRecords, educationRecords)
+      chartOptions(totalUsers, male, female, other)
     )
     if (chart) {
       chart.render()
@@ -38,17 +38,17 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef, totalRecords, funRecords, adultsRecords, educationRecords])
+  }, [chartRef, totalUsers, male, female, other])
 
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getsubscribecount();
       setSubscribeCount(res.count);
       setGrowthPercent(res.growthPercent);
-      setTotalRecords(res.totalRecords);
-      setFunRecords(res.funRecords);
-      setAdultsRecords(res.adultsRecords);
-      setEducationRecords(res.educationRecords);
+      setTotalUsers(res.total);
+      setMale(res.male);
+      setFemale(res.female);
+      setOther(res.count - res.male - res.female);
     }
   
     // call the function
@@ -119,26 +119,26 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
           {/* begin::Label */}
           <div className="d-flex fs-6 fw-bold align-items-center">
             {/* begin::Bullet */}
-            <div className="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
+            <div className="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
             {/* end::Bullet */}
             {/* begin::Label */}
-            <div className="text-gray-500 flex-grow-1 me-4">Fun</div>
+            <div className="text-gray-500 flex-grow-1 me-4">Male</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">{funRecords}</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{totalUsers ? (Math.round(male * 100 / totalUsers) * 100) / 100 : 0}%</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
           {/* begin::Label */}
           <div className="d-flex fs-6 fw-bold align-items-center my-3">
             {/* begin::Bullet */}
-            <div className="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
+            <div className="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
             {/* end::Bullet */}
             {/* begin::Label */}
-            <div className="text-gray-500 flex-grow-1 me-4">For adults</div>
+            <div className="text-gray-500 flex-grow-1 me-4">Female</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">{adultsRecords}</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{totalUsers ? (Math.round(female * 100 / totalUsers) * 100) / 100 : 0}%</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
@@ -148,10 +148,10 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             <div className="bullet w-8px h-6px rounded-2 me-3" style={{backgroundColor: '#0bb783'}}></div>
             {/* end::Bullet */}
             {/* begin::Label */}
-            <div className="text-gray-500 flex-grow-1 me-4">Educations</div>
+            <div className="text-gray-500 flex-grow-1 me-4">Other</div>
             {/* end::Label */}
             {/* begin::Stats */}
-            <div className="fw-boldest text-gray-700 text-xxl-end">{educationRecords}</div>
+            <div className="fw-boldest text-gray-700 text-xxl-end">{totalUsers ? (Math.round(other * 100 / totalUsers) * 100) / 100 : 0}%</div>
             {/* end::Stats */}
           </div>
           {/* end::Label */}
@@ -163,9 +163,9 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
   )
 }
 
-const chartOptions = (total: number, funs: number, adults: number, educations: number): ApexOptions => {
+const chartOptions = (total: number, males: number, females: number, others: number): ApexOptions => {
   return {
-    series: [funs, adults, educations, total - funs - adults - educations],
+    series: [males, females, others, total - males - females - others],
     chart: {
       height: 70,
       type: 'donut',
@@ -176,7 +176,7 @@ const chartOptions = (total: number, funs: number, adults: number, educations: n
         enabled: false
       }
     },
-    colors: ['#f64e60', '#3699ff', '#0bb783', '#E4E6EF'],
+    colors: ['#3699ff', '#f64e60', '#0bb783', '#E4E6EF'],
     plotOptions: {
       pie: {
         startAngle: 0,

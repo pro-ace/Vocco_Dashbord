@@ -7,13 +7,8 @@ type Props = {
 }
 
 type CountryData = {
-  US: number,
-  UK: number,
-  FR: number,
-  CA: number,
-  BE: number,
-  GE: number,
-  SP: number
+  users_count: number,
+  country: string
 }
 
 const countries = [
@@ -56,34 +51,15 @@ const countries = [
 
 const UsersByCountry: React.FC<Props> = ({className}) => {
 
-  const [usersCountryData, setUsersCountryData] = useState<CountryData | null>(null);
+  const [usersCountryData, setUsersCountryData] = useState<Array<CountryData>>([]);
   const [totalUsers, setTotalUsers] = useState<number>(0);
 
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getusersbycountry();
-      
-      let countryData = {
-        "US": 0,
-        "UK": 0,
-        "FR": 0,
-        "SP": 0,
-        "BE": 0,
-        "GE": 0,
-        "CA": 0
-      }
-      setTotalUsers(res.users.length);
-      res.users.map((user) => {
-        if (user.country === "United States") countryData.US++;
-        if (user.country === "United Kingdom") countryData.UK++;
-        if (user.country === "Canada") countryData.CA++;
-        if (user.country === "Spain") countryData.SP++;
-        if (user.country === "Belgium") countryData.BE++;
-        if (user.country === "France") countryData.FR++;
-        if (user.country === "Germany") countryData.GE++;
-        return true;
-      })
-      setUsersCountryData(countryData);
+      console.log(res);
+      setUsersCountryData(res.data);
+      setTotalUsers(res.totalCount);
     }
     fetchData()
       .catch(console.error);
@@ -101,52 +77,24 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
       </div>
       <div className="card-body pt-0">
         {
-          countries.map((eCountry, index) => {
+          usersCountryData ? usersCountryData.map((eCountry, index) => {
+            const flag = `${eCountry.country.toLowerCase().replace(" ", "-")}.svg`
             return (
               <Fragment key={index}>
                 <div className="d-flex flex-stack">
-                  <img src={`media/flags/${eCountry.flag}`} className="me-4 w-25px" style={{borderRadius: "4px"}} alt="" />
+                  <img src={`media/flags/${flag}`} className="me-4 w-25px" style={{borderRadius: "4px"}} alt="" />
                   <div className="d-flex flex-stack flex-row-fluid d-grid gap-2">
                     <div className="me-5">
                       <a href="#" className="text-gray-800 fw-bolder text-hover-primary fs-6">{eCountry.country}</a>
                     </div>
                     <div className="d-flex align-items-center">
                       <span className="text-gray-800 fw-bolder fs-6 me-3 d-block">
-                        {
-                          eCountry.ab === "US" ? 
-                          usersCountryData?.US :
-                          eCountry.ab === "UK" ? 
-                          usersCountryData?.UK :
-                          eCountry.ab === "CA" ? 
-                          usersCountryData?.CA :
-                          eCountry.ab === "FR" ? 
-                          usersCountryData?.FR:
-                          eCountry.ab === "BE" ? 
-                          usersCountryData?.BE :
-                          eCountry.ab === "SP" ? 
-                          usersCountryData?.SP :
-                          eCountry.ab === "GE" ? 
-                          usersCountryData?.GE : 0
-                        }
+                        {eCountry.users_count}
                       </span>
                       <div className="m-0">
                         <span className="badge badge-success fs-base">
                           {
-                            eCountry.ab === "US" ? 
-                            totalUsers && usersCountryData?.US ? Math.round((usersCountryData?.US * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "UK" ? 
-                            totalUsers && usersCountryData?.UK ? Math.round((usersCountryData?.UK * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "CA" ? 
-                            totalUsers && usersCountryData?.CA ? Math.round((usersCountryData?.CA * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "FR" ? 
-                            totalUsers && usersCountryData?.FR ? Math.round((usersCountryData?.FR * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "BE" ? 
-                            totalUsers && usersCountryData?.BE ? Math.round((usersCountryData?.BE * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "SP" ? 
-                            totalUsers && usersCountryData?.SP ? Math.round((usersCountryData?.SP * 100 / totalUsers) * 100) / 100 : 0 :
-                            eCountry.ab === "GE" ? 
-                            totalUsers && usersCountryData?.GE ? Math.round((usersCountryData?.GE * 100 / totalUsers) * 100) / 100 : 0 :
-                            0
+                            totalUsers ? Math.round((eCountry.users_count * 100 / totalUsers) * 100) / 100 : 0
                           }{"%"}
                         </span>
                       </div>
@@ -156,7 +104,7 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
                 <div className="separator separator-dashed my-3"></div>
               </Fragment>
             )
-          })
+          }) : null
         }
       </div>
       {/* end::Body */}

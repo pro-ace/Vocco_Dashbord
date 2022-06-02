@@ -1,10 +1,9 @@
 export interface SubscribeCountModel {
   count: number
   growthPercent: number
-  totalRecords: number
-  funRecords: number
-  adultsRecords: number
-  educationRecords: number
+  total: number
+  male: number
+  female: number
 }
 
 export interface NewUsersThisWeekModel {
@@ -61,8 +60,16 @@ export interface UsersCountryModel {
   country: string
 }
 
-export interface UsersByCountry {
+export interface UsersByCountryStatis {
   users: Array<UsersCountryModel>
+}
+
+export interface UsersByCountry {
+  data: Array<{
+    users_count: number,
+    country: string
+  }>
+  totalCount: number
 }
 
 export interface SubscribeCountModel {
