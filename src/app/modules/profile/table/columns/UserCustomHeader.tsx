@@ -3,7 +3,7 @@ import {FC, PropsWithChildren, useMemo} from 'react'
 import {HeaderProps} from 'react-table'
 import {initialQueryState} from '../../../../../_metronic/helpers'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
-import {TransactionHistory, User} from '../../core/_models'
+import {TransactionHistory} from '../../core/_models'
 
 type Props = {
   className?: string

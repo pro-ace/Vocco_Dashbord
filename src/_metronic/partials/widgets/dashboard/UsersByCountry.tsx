@@ -116,19 +116,14 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
       let date = new Date();
       let ysDay = new Date(date.getFullYear(), date.getMonth() , date.getDate() - 1);
       let yeDay = new Date(date.getFullYear(), date.getMonth() , date.getDate());
-      let neDay = new Date(date.getFullYear(), date.getMonth() , date.getDate() + 1);
       res.users.map((user) => {
-        console.log(user);
         if (new Date(user.createdAt) >= ysDay && new Date(user.createdAt) < yeDay){
           if (user.country === "United States") countryData.US.y++;
           if (user.country === "United Kingdom") countryData.UK.y++;
           if (user.country === "Canada") countryData.CA.y++;
           if (user.country === "Spain") countryData.SP.y++;
           if (user.country === "Belgium") countryData.BE.y++;
-          if (user.country === "France") {
-            countryData.FR.y++;
-            console.log('France', countryData.FR.y);
-          }
+          if (user.country === "France") countryData.FR.y++;
           if (user.country === "Germany") countryData.GE.y++;
         } 
         if (user.country === "United States") countryData.US.t++;
@@ -153,9 +148,9 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
         <h3 className="card-title align-items-start flex-column">
           <span className="card-label fw-bolder text-gray-800">Users by Country</span>
         </h3>
-        <div className="card-toolbar">
+        {/* <div className="card-toolbar">
           <a href="../../demo1/dist/apps/ecommerce/sales/listing.html" className="btn btn-sm btn-light">View All</a>
-        </div>
+        </div> */}
       </div>
       <div className="card-body pt-0">
         {

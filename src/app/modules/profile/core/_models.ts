@@ -1,4 +1,3 @@
-import { array } from '@amcharts/amcharts5'
 import {ID, Response, QueryState} from '../../../../_metronic/helpers'
 
 export type User = {

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, {FC} from 'react'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import {HeaderNotificationsMenu, HeaderUserMenu, QuickLinks, Search} from '../../../partials'
+import { HeaderUserMenu, QuickLinks} from '../../../partials'
 import {useLayout} from '../../core'
 
 const toolbarButtonMarginClass = 'ms-1 ms-lg-3',

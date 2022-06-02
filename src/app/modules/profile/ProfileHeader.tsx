@@ -6,7 +6,6 @@ import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
-  // const userId = '1610e2f9-4fec-4f80-8015-056f985b709f';
   const [firstname, setFirstname] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -16,7 +15,6 @@ const ProfileHeader: React.FC = () => {
   const [country, setCountry] = useState<string>('');
   const [premium, setPremium] = useState<string>('');
   const [avatarUrl, setAvatarUrl] = useState<string>('');
-  const [avatarLink, setAvatarLink] = useState<string>('');
 
   useEffect(() =>{
     const fetchData = async () => {
@@ -30,12 +28,11 @@ const ProfileHeader: React.FC = () => {
       setCountry(res.data.country);
       setPremium(res.data.premium);
       setAvatarUrl(res.data.avatar.url);
-      setAvatarLink(res.data.avatar.link);
     }
     // call the function
     fetchData()
       .catch(console.error);
-  }, [])
+  }, [userId])
 
   return (
     <div className="post d-flex flex-column-fluid" id="kt_post">
@@ -47,7 +44,7 @@ const ProfileHeader: React.FC = () => {
               <div className="card-body pt-15">
                 <div className="d-flex flex-center flex-column mb-5">
                   <div className="symbol symbol-150px symbol-circle mb-7">
-                    <img src={avatarUrl} alt="image" />
+                    <img src={avatarUrl} alt="avatar link" />
                   </div>
                   <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{firstname} {lastname}</a>
                   <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{name}</a>
@@ -96,9 +93,9 @@ const ProfileHeader: React.FC = () => {
                                 <path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
                               </svg>
                             </span>
-                            <div className="ms-2">4,571<span className="text-muted fs-4 fw-bold">Points earned</span></div>
+                            <div className="ms-2"> 0 <span className="text-muted fs-4 fw-bold">Points earned</span></div>
                           </div>
-                          <div className="fs-7 fw-normal text-muted">Earn reward points with every purchase.</div>
+                          <div className="fs-7 fw-normal text-muted">Earn reward points with every vocals.</div>
                         </div>
                       </div>
                     </div>

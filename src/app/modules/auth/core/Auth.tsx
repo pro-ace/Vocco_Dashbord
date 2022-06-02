@@ -5,8 +5,6 @@ import {
   createContext,
   useContext,
   useRef,
-  Dispatch,
-  SetStateAction,
 } from 'react'
 import {LayoutSplashScreen} from '../../../../_metronic/layout/core'
 import {AuthModel, UserModel} from './_models'

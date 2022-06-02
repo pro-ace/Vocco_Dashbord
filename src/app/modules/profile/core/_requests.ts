@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios'
 import {ID, Response} from '../../../../_metronic/helpers'
-import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse, userTransactionHistoryModel} from './_models'
+import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse} from './_models'
 
 const API_URL = process.env.REACT_APP_ADMIN_API_URL
 const USER_URL = `${API_URL}/user`
