@@ -3,9 +3,9 @@ import {useState} from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import {useFormik} from 'formik'
-import {login} from '../core/_requests'
 import {useAuth} from '../core/Auth'
 import {Alert} from 'react-bootstrap'
+import {getUserByToken, login} from '../core/_requests'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -46,9 +46,10 @@ export function Login() {
         const user = {
           id: auth.id
         }
+        console.log(user);
+        // const {data: user} = await getUserByToken(auth.accessToken)
         setCurrentUser(user)
       } catch (error) {
-        // <Alert variant="success">The login detail is incorrect</Alert>
         setAlert(true);
         console.error(error)
         saveAuth(undefined)
