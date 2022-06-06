@@ -44,7 +44,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getsubscribecount();
       setSubscribeCount(res.count);
-      setGrowthPercent(res.growthPercent);
+      setGrowthPercent(Math.round(res.growthPercent * 100) / 100);
       setTotalUsers(res.total);
       setMale(res.male);
       setFemale(res.female);

@@ -57,7 +57,6 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getusersbycountry();
-      console.log(res);
       setUsersCountryData(res.data);
       setTotalUsers(res.totalCount);
     }

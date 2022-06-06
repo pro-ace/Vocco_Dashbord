@@ -17,7 +17,7 @@ const TotalNumberOfNewUserMonth: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getuserscountmonth();
       setMonthTotal(res.count);
-      setGrowthPercent(res.growthPercent);
+      setGrowthPercent(Math.round(res.growthPercent * 100) / 100);
     }
     // call the function
     fetchData()
