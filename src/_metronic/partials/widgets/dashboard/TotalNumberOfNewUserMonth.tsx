@@ -73,7 +73,7 @@ const TotalNumberOfNewUserMonth: React.FC<Props> = ({className}) => {
         {/* begin::Progress */}
         <div className="d-flex align-items-center flex-column mt-3 w-100">
           <div className="d-flex justify-content-between w-100 mt-auto mb-2">
-            <span className="fw-boldest fs-6 text-dark">{monthTotal} to {goal - monthTotal}</span>
+            <span className="fw-boldest fs-6 text-dark">{monthTotal} on {goal}({goal - monthTotal} left)</span>
             <span className="fw-bolder fs-6 text-gray-400">{monthTotal * 100 / goal}%</span>
           </div>
           <div className="h-8px mx-3 w-100 bg-light-success rounded">
