@@ -35,7 +35,6 @@ const GetSeesionPerTime: React.FC<Props> = ({className}) => {
       let eDay = new Date(date.getFullYear(), date.getMonth() , dy + 1);
       let count = 0;
       let time = 0;
-      console.log(timePerSessions);
       timePerSessions.map((eData: IdCreatedAtModel, index: number) => {
         if (new Date(eData.createdAt) >= sDay && new Date(eData.createdAt) < eDay){
           time += eData.value ? eData.value : 0;
@@ -43,7 +42,6 @@ const GetSeesionPerTime: React.FC<Props> = ({className}) => {
         }
         return true;
       });
-      console.log(time, count);
       if (count > 0){
         avgValue = Math.round(time / count);
       }

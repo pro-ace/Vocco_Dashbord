@@ -46,7 +46,6 @@ export function Login() {
         const user = {
           id: auth.id
         }
-        console.log(user);
         // const {data: user} = await getUserByToken(auth.accessToken)
         setCurrentUser(user)
       } catch (error) {

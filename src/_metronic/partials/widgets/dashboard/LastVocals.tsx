@@ -14,7 +14,6 @@ const LastVocals: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getLastVocals();
-      console.log(res.lastVocals);
       setLastVocals(res.lastVocals)
     }
     fetchData()
