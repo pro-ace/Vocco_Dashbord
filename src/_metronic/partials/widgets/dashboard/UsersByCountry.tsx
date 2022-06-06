@@ -11,44 +11,6 @@ type CountryData = {
   country: string
 }
 
-const countries = [
-  {
-    country: "United States",
-    ab: "US",
-    flag: "united-states.svg"
-  },
-  {
-    country: "United Kingdom",
-    ab: "UK",
-    flag: "united-kingdom.svg"
-  },
-  {
-    country: "France",
-    ab: "FR",
-    flag: "france.svg"
-  },
-  {
-    country: "Spain",
-    ab: "SP",
-    flag: "spain.svg"
-  },
-  {
-    country: "Belium",
-    ab: "BE",
-    flag: "belgium.svg"
-  },
-  {
-    country: "Germany",
-    ab: "GE",
-    flag: "germany.svg"
-  },
-  {
-    country: "Canada",
-    ab: "CA",
-    flag: "canada.svg"
-  }
-]
-
 const UsersByCountry: React.FC<Props> = ({className}) => {
 
   const [usersCountryData, setUsersCountryData] = useState<Array<CountryData>>([]);

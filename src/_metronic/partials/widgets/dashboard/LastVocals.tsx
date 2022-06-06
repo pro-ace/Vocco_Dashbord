@@ -14,6 +14,7 @@ const LastVocals: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getLastVocals();
+      console.log(res.lastVocals);
       setLastVocals(res.lastVocals)
     }
     fetchData()
@@ -36,6 +37,7 @@ const LastVocals: React.FC<Props> = ({className}) => {
               <th className="min-w-100px">Username</th>
               <th className="text-end min-w-100px">Answers</th>
               <th className="text-end min-w-125px">Likes</th>
+              <th className="text-end min-w-100px">Listen</th>
               <th className="text-end min-w-100px">Comments</th>
             </tr>
           </thead>
@@ -52,6 +54,7 @@ const LastVocals: React.FC<Props> = ({className}) => {
                     <td className="text-end">
                      {eVocal?.likesCount}
                     </td>
+                    <td className="text-end">{eVocal?.listenCount}</td>
                     <td className="text-end">{eVocal?.reactionsCount}</td>
                   </tr>
                 )

@@ -13,6 +13,10 @@ export * from './dashboard/UserGrowthByCountry'
 export * from './dashboard/PremiumMembersPerMonth'
 export * from './dashboard/DurationVocals'
 export * from './dashboard/MapDistribution'
+export * from './dashboard/OpenAppByMonth'
+export * from './dashboard/GetInviteLinks'
+export * from './dashboard/GetShareStories'
+export * from './dashboard/GetSeesionPerTime'
 
 // charts
 export * from './feeds/FeedsWidget2'

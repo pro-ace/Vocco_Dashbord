@@ -15,7 +15,11 @@ import {
   UsersByCountry,
   UserGrowthByCountry,
   DurationVocals,
-  MapDistribution
+  MapDistribution,
+  OpenAppByMonth,
+  GetInviteLinks,
+  GetShareStories,
+  GetSeesionPerTime
 } from '../../../_metronic/partials/widgets'
 
 const DashboardPage: FC = () => (
@@ -98,6 +102,36 @@ const DashboardPage: FC = () => (
           className='card-xl-stretch mb-xl-8'
           chartColor='primary'
           chartHeight='200px'
+        />
+      </div>
+    </div>
+    {/* end::Row */}
+
+    {/* begin::Row */}
+    <div className='row g-5 g-xl-10 g-xl-10'>
+      <div className='col-xl-6 mb-xl-10'>
+        <OpenAppByMonth
+          className='card-flush overflow-hidden h-md-100'
+        />
+      </div>
+      <div className='col-xl-6 mb-xl-10'>
+        <GetInviteLinks
+          className='card-flush overflow-hidden h-md-100'
+        />
+      </div>
+    </div>
+    {/* end::Row */}
+
+    {/* begin::Row */}
+    <div className='row g-5 g-xl-10 g-xl-10'>
+      <div className='col-xl-6 mb-xl-10'>
+        <GetShareStories
+          className='card-flush overflow-hidden h-md-100'
+        />
+      </div>
+      <div className='col-xl-6 mb-xl-10'>
+        <GetSeesionPerTime
+          className='card-flush overflow-hidden h-md-100'
         />
       </div>
     </div>

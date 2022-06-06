@@ -84,10 +84,16 @@ export interface SubscribeCountModel {
 export interface IdCreatedAtModel {
   id: string
   createdAt: Date
+  value?: number
 }
 
 export interface PremiumUsersByMonthModel {
   premiumUsers: Array<IdCreatedAtModel>
+}
+
+export interface HistoryByMonthModel {
+  total: number
+  data: Array<IdCreatedAtModel>
 }
 
 export interface DownloadsByMonthModel {
@@ -107,7 +113,8 @@ export interface VocalModel {
     url: string
   }
   id: string
-  likesCount: string
+  likesCount: number
+  listenCount: number
   privacy: boolean
   reactionsCount: number
   temporary: boolean

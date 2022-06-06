@@ -12,7 +12,8 @@ import {
   RecordDuration,
   countriesModel,
   topUserModel,
-  UsersByCountryStatis
+  UsersByCountryStatis,
+  HistoryByMonthModel
 } from './_models'
 
 
@@ -45,6 +46,22 @@ export function getusersstatisticsbycountry() {
 
 export function getpremiumusersbymonth() {
   return axios.get<PremiumUsersByMonthModel>(`${ADMIN_API_URL}/getpremiumusersbymonth`);
+}
+
+export function getinvitelinks() {
+  return axios.get<HistoryByMonthModel>(`${ADMIN_API_URL}/getinvitelinks`);
+}
+
+export function getpersessiontime() {
+  return axios.get<HistoryByMonthModel>(`${ADMIN_API_URL}/getpersessiontime`);
+}
+
+export function getsharestories() {
+  return axios.get<HistoryByMonthModel>(`${ADMIN_API_URL}/getsharestories`);
+}
+
+export function getopenappcount() {
+  return axios.get<HistoryByMonthModel>(`${ADMIN_API_URL}/getopenappcount`);
 }
 
 export function getdevicesbymonth() {
