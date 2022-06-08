@@ -36,7 +36,15 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
           <a href="../../demo1/dist/apps/ecommerce/sales/listing.html" className="btn btn-sm btn-light">View All</a>
         </div> */}
       </div>
-      <div className="card-body pt-0">
+      <div
+        className="card-body pt-0 scroll-y h-200px"
+        data-kt-scroll='true'
+        data-kt-scroll-activate='{default: false, lg: true}'
+        data-kt-scroll-max-height='auto'
+        data-kt-scroll-dependencies='#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header'
+        data-kt-scroll-wrappers='#kt_content, #kt_chat_contacts_body'
+        data-kt-scroll-offset='0px'
+      >
         {
           usersCountryData ? usersCountryData.map((eCountry, index) => {
             const flag = `${eCountry.country.toLowerCase().replace(" ", "-")}.svg`

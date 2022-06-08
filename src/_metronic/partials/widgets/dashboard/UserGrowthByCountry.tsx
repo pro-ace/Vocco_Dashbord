@@ -15,51 +15,15 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Data
-      // let data = [{
-      //   country: "US",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/united-states.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "UK",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/united-kingdom.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "France",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/france.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "Canada",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/canada.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "Germany",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/germany.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "Spain",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/spain.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }, {
-      //   country: "Belgium",
-      //   visits: 0,
-      //   icon: "https://www.amcharts.com/wp-content/uploads/flags/belgium.svg",
-      //   columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
-      // }];
       const { data: res } = await getusersbycountry();
-
-      const data = res.data.map((eCountry) => {
-        return {
-          country: eCountry.country,
-          visits: eCountry.users_count * 1,
-          icon: `https://www.amcharts.com/wp-content/uploads/flags/${eCountry.country.toLowerCase().replace(" ", "-")}.svg`,
-          columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
+      const data = res.data.map((eCountry, index) => {
+        if (index < 10){
+          return {
+            country: eCountry.country,
+            visits: eCountry.users_count * 1,
+            icon: `https://www.amcharts.com/wp-content/uploads/flags/${eCountry.country.toLowerCase().replace(" ", "-")}.svg`,
+            columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
+          }
         }
       })
 
@@ -76,7 +40,6 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
       }));
 
       // Create axes
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
       let xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
         categoryField: "country",
         renderer: am5xy.AxisRendererX.new(root, {
@@ -131,7 +94,6 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
 
 
       // Add series
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
       let series = chart.series.push(am5xy.ColumnSeries.new(root, {
         xAxis: xAxis,
         yAxis: yAxis,
@@ -158,7 +120,6 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
 
 
       // Make stuff animate on load
-      // https://www.amcharts.com/docs/v5/concepts/animations/
       series.appear();
       chart.appear(1000, 100);
     }

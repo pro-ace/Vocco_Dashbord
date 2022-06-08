@@ -123,11 +123,10 @@ export interface VocalModel {
 }
 
 export interface TopCategoryVocalModel {
-  Fun: Array<VocalModel>
-  Adults: Array<VocalModel>
-  Education: Array<VocalModel>
-  Horror: Array<VocalModel>
-  Transport: Array<VocalModel>
+  data: Array<{
+    category: string
+    data: Array<VocalModel>
+  }>
 }
 
 export interface LastVocalsModel {

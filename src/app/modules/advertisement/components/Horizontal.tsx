@@ -67,19 +67,19 @@ const Horizontal: FC = () => {
         >
           <div className='stepper-nav mb-5'>
             <div className='stepper-item current' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Account Type</h3>
+              <h3 className='stepper-title'>Advertisement Type</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Account Info</h3>
+              <h3 className='stepper-title'>Profile ID</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Business Info</h3>
+              <h3 className='stepper-title'>Customer target</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Billing Details</h3>
+              <h3 className='stepper-title'>Customization of the ad</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>

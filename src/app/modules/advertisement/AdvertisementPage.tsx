@@ -3,10 +3,10 @@ import {PageLink, PageTitle} from '../../../_metronic/layout/core'
 import {Vertical} from './components/Vertical'
 import {Horizontal} from './components/Horizontal'
 
-const wizardsBreadCrumbs: Array<PageLink> = [
+const AdvertisementBreadCrumbs: Array<PageLink> = [
   {
-    title: 'Wizards',
-    path: '/crafted/pages/wizards/horizontal',
+    title: 'Advertisement',
+    path: '/advertisement/settings',
     isSeparator: false,
     isActive: false,
   },
@@ -18,24 +18,24 @@ const wizardsBreadCrumbs: Array<PageLink> = [
   },
 ]
 
-const WizardsPage = () => (
+const AdvertisementPage = () => (
   <Routes>
     <Route element={<Outlet />}>
       <Route
-        path='horizontal'
+        path='settings'
         element={
           <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Horizontal</PageTitle>
+            <PageTitle breadcrumbs={AdvertisementBreadCrumbs}>Setting</PageTitle>
             <Horizontal />
           </>
         }
       />
       <Route
-        path='vertical'
+        path='statistics'
         element={
           <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Vertical</PageTitle>
-            <Vertical />
+            <PageTitle breadcrumbs={AdvertisementBreadCrumbs}>Statistic</PageTitle>
+            {/* <Vertical /> */}
           </>
         }
       />
@@ -44,4 +44,4 @@ const WizardsPage = () => (
   </Routes>
 )
 
-export default WizardsPage
+export default AdvertisementPage
