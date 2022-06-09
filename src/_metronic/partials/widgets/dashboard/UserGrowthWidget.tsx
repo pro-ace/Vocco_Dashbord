@@ -70,7 +70,7 @@ const UserGrowthWidget: React.FC<Props> = ({className}) => {
             {/* <span className="fs-4 fw-bold text-gray-400 me-1 align-self-start">$</span> */}
             {/* end::Currency */}
             {/* begin::Amount */}
-            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{subscribeCount}</span>
+            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{subscribeCount.toLocaleString()}</span>
             {/* end::Amount */}
             {/* begin::Badge */}
             {

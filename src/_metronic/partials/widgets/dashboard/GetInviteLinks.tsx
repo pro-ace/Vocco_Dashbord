@@ -80,7 +80,7 @@ const GetInviteLinks: React.FC<Props> = ({className}) => {
       <div className="card-body d-flex justify-content-between flex-column pb-1 px-0">
         <div className="px-9 mb-5">
           <div className="d-flex mb-2">
-            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalInviteLinks}</span>
+            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalInviteLinks.toLocaleString()}</span>
           </div>
         </div>
         <div

@@ -65,7 +65,7 @@ const TotalNumberOfNewUserWeek: React.FC<Props> = ({className}) => {
           {/* begin::Info */}
           <div className="d-flex align-items-center">
             {/* begin::Amount */}
-            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{weekTotal}</span>
+            <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{weekTotal?.toLocaleString()}</span>
             {/* end::Amount */}
             {/* begin::Badge */}
             {

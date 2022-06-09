@@ -87,7 +87,7 @@ const EvolutionOfDownloadsThisMonth: React.FC<Props> = ({className}) => {
       <div className="card-body d-flex justify-content-between flex-column pb-1 px-0">
         <div className="px-9 mb-5">
           <div className="d-flex align-items-center mb-2">
-            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalDownloads}</span>
+            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalDownloads.toLocaleString()}</span>
             {
               percent > 0 ? 
                 <span className="badge badge-success fs-base">

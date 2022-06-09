@@ -81,9 +81,9 @@ const NumberOfPremiumMembers: React.FC<Props> = ({className}) => {
       <div className="card-body d-flex justify-content-between flex-column pb-1 px-0">
         <div className="px-9 mb-5">
           <div className="d-flex mb-2">
-            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalPremiumUsers}</span>
+            <span className="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">{totalPremiumUsers.toLocaleString()}</span>
           </div>
-          <span className="fs-6 fw-bold text-gray-400">Another {5000 - totalPremiumUsers} to Goal</span>
+          <span className="fs-6 fw-bold text-gray-400">Another {(5000 - totalPremiumUsers).toLocaleString()} to Goal</span>
         </div>
         <div
           id='chartContainer'
