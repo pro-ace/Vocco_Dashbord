@@ -29,7 +29,6 @@ const ProfileHeader: React.FC = () => {
       setPremium(res.data.premium);
       setAvatarUrl(res.data.avatar.url);
     }
-    // call the function
     fetchData()
       .catch(console.error);
   }, [userId])
@@ -38,7 +37,6 @@ const ProfileHeader: React.FC = () => {
     <div className="post d-flex flex-column-fluid" id="kt_post">
       <div id="kt_content_container" className="container-xxl">
         <div className="d-flex flex-column flex-xl-row">
-          {/* <!--begin::Sidebar--> */}
           <div className="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10">
             <div className="card mb-5 mb-xl-8">
               <div className="card-body pt-15">
@@ -69,16 +67,11 @@ const ProfileHeader: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* <!--end::Sidebar--> */}
-          {/* <!--begin::Content--> */}
           <div className="flex-lg-row-fluid ms-lg-15">
-            {/* <!--begin:::Tab content--> */}
             <div className="tab-content" id="myTabContent">
-              {/* <!--begin:::Tab Overview--> */}
               <div className="tab-pane fade show active" id="kt_ecommerce_customer_overview" role="tabpanel">
                 <div className="row row-cols-1 row-cols-md-2 mb-6 mb-xl-9">
                   <div className="col">
-                    {/* <!--begin::Reward Point Card--> */}
                     <div className="card pt-4 h-md-100 mb-6 mb-md-0">
                       <div className="card-header border-0">
                         <div className="card-title">
@@ -99,10 +92,8 @@ const ProfileHeader: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    {/* <!--end::Reward Point Card--> */}
                   </div>
                   <div className="col">
-                    {/* <!--begin::Reward Tier--> */}
                     { premium !== 'none' ?
                       <a href="#" className="card bg-info hoverable h-md-100">
                         <div className="card-body">
@@ -128,10 +119,8 @@ const ProfileHeader: React.FC = () => {
                         </div>
                       </a>
                     }
-                    {/* <!--end::Reward Tier--> */}
                   </div>
                 </div>
-                {/* <!--begin::Transaction History Table--> */}
                 <div className="card pt-4 mb-6 mb-xl-9">
                   <div className="card-header border-0">
                     <div className="card-title">
@@ -141,15 +130,10 @@ const ProfileHeader: React.FC = () => {
                   <div className="card-body pt-0 pb-5">
                     <THSListWrapper userId = {userId ? userId : ''} />
                   </div>
-                  {/* <!--end::Transaction History Card body--> */}
                 </div>
-                {/* <!--end::Transaction History Table--> */}
               </div>
-              {/* <!--end:::Tab Overview--> */}
             </div>
-            {/* <!--end:::Tab content--> */}
           </div>
-          {/* <!--end::Content--> */}
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const usersColumns: ReadonlyArray<Column<TransactionHistory>> = [
   {
     Header: (props) => <UserCustomHeader tableProps={props} title='category' />,
     id: 'category',
-    Cell: ({ ...props }) => <Category category={props.data[props.row.index].category} />,
+    Cell: ({ ...props }) => <Category category={props.data[props.row.index].category === "" ? "All" : props.data[props.row.index].category} />,
   },
   {
     Header: (props) => <UserCustomHeader tableProps={props} title='duration' />,
