@@ -10,6 +10,7 @@ import {LayoutSplashScreen} from '../../../../_metronic/layout/core'
 import {AuthModel, UserModel} from './_models'
 import * as authHelper from './AuthHelpers'
 import {getUserByToken} from './_requests'
+import { io, Socket  } from "socket.io-client"
 
 type AuthContextProps = {
   auth: AuthModel | undefined
@@ -17,6 +18,8 @@ type AuthContextProps = {
   currentUser: UserModel | undefined
   setCurrentUser: (user: UserModel | undefined) => void
   logout: () => void
+  socketInstance: Socket | undefined
+  setSocketInstance: (instance: Socket | undefined) => void
 }
 
 const initAuthContextPropsState = {
@@ -25,6 +28,8 @@ const initAuthContextPropsState = {
   currentUser: undefined,
   setCurrentUser: () => {},
   logout: () => {},
+  socketInstance: undefined,
+  setSocketInstance: () => {}
 }
 
 const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
@@ -36,10 +41,24 @@ const useAuth = () => {
 const AuthProvider: FC = ({children}) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
+  const [socketInstance, setSocketInstance] = useState<Socket | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
     setAuth(auth)
     if (auth) {
       authHelper.setAuth(auth)
+
+      const socketUrl = process.env.REACT_APP_SOCKET_URL;
+
+      console.log(socketUrl);
+
+      const socketIns = io("http://192.168.111.196:3000");
+      setSocketInstance(socketIns);
+      socketIns.on("connect", () => {
+        socketIns.emit("dash_login", {uid: auth.id }, (res: string) => {
+          console.log(res);
+        });
+      });
+
     } else {
       authHelper.removeAuth()
     }
@@ -48,10 +67,11 @@ const AuthProvider: FC = ({children}) => {
   const logout = () => {
     saveAuth(undefined)
     setCurrentUser(undefined)
+    setSocketInstance(undefined)
   }
 
   return (
-    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout}}>
+    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout, socketInstance, setSocketInstance}}>
       {children}
     </AuthContext.Provider>
   )

@@ -26,28 +26,6 @@ export function AsideMenuMain() {
         title='User management'
         fontIcon='bi-layers'
       />
-      <div className='menu-item'>
-        <div className='menu-content pt-8 pb-2'>
-          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Advertisement</span>
-        </div>
-      </div>
-      
-      <AsideMenuItemWithSub to='/advertisement' title='Advertisement' hasBullet={true}>
-        <AsideMenuItem
-          to='/advertisement/settings'
-          title='Settings'
-          hasBullet={true}
-        />
-        <AsideMenuItem to='/advertisement/monetization' title='Monetization' hasBullet={true} />
-        <AsideMenuItem to='/advertisement/statistics' title='Statistics' hasBullet={true} />
-      </AsideMenuItemWithSub>
-      
-      {/* <AsideMenuItem
-        to='/advertisement'
-        icon='/media/icons/duotune/general/gen051.svg'
-        title='Advertisement'
-        fontIcon='bi-layers'
-      /> */}
     </>
   )
 }
