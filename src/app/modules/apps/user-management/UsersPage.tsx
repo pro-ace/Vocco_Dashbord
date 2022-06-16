@@ -37,7 +37,7 @@ const UsersPage = () => {
       addToast(`${res.email} is registered`, { appearance: 'success' });
     })
 
-    socketInstance.on("premium_user", (res) => {
+    socketInstance.on("premium", (res) => {
       console.log("premium user in Dashbaord", res);
       pAudio.play();
       addToast(`${res.email} is registered as premium uer.`, { appearance: 'success' });

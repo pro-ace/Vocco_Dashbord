@@ -42,7 +42,6 @@ const TopCategories: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getTopCategoriesVocals();
-      console.log(res);
       setTopCategoryVocals(res);
     }
     fetchData()

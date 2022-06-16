@@ -49,9 +49,7 @@ const AuthProvider: FC = ({children}) => {
 
       const socketUrl = process.env.REACT_APP_SOCKET_URL;
 
-      console.log(socketUrl);
-
-      const socketIns = io("http://192.168.111.196:3000");
+      const socketIns = io(socketUrl ? socketUrl : '');
       setSocketInstance(socketIns);
       socketIns.on("connect", () => {
         socketIns.emit("dash_login", {uid: auth.id }, (res: string) => {
