@@ -63,6 +63,11 @@ const GetShareStories: React.FC<Props> = ({className}) => {
       const {data: res} = await getsharestories();
       setShareStories(res.data);
       setTotalShareStories(res.total);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
   
     fetchData()

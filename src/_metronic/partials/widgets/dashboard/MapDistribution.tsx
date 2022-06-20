@@ -30,6 +30,11 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
         return code;        
       })
       setCountryData(countries);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
     .catch(console.error);

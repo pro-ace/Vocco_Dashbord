@@ -69,6 +69,11 @@ const GetSeesionPerTime: React.FC<Props> = ({className}) => {
       const {data: res} = await getpersessiontime();
       setTimePerSessions(res.data);
       setAvgSessionTime(res.total);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
   
     fetchData()

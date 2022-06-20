@@ -43,6 +43,11 @@ const TopCategories: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getTopCategoriesVocals();
       setTopCategoryVocals(res);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);

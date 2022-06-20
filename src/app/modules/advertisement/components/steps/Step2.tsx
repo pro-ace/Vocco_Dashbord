@@ -1,6 +1,5 @@
 import React, {FC} from 'react'
-import {KTSVG} from '../../../../../_metronic/helpers'
-import {Field, ErrorMessage} from 'formik'
+import { Field } from 'formik'
 
 const Step2: FC = () => {
   return (
@@ -17,9 +16,6 @@ const Step2: FC = () => {
             className='form-control form-control-lg form-control-solid'
             name='firstName'
           />
-          {/* <div className='text-danger mt-2'>
-            <ErrorMessage name='firstName' />
-          </div> */}
         </div>
         <div className='col'>
           <label className='form-label mb-3'>Last Name</label>

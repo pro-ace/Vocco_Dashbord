@@ -46,6 +46,7 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
           eRecord.answers.map(ea => {
             aDuration += ea.duration * 1;
             ansersNumber++;
+            return true;
           })
         }
         return true
@@ -72,6 +73,11 @@ const DurationVocals: React.FC<Props> = ({className, chartColor, chartHeight}) =
       const {data: res} = await getRecordsDuration();
       setTotal(res.total);
       setTotalRecords(res.totalRecords);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     
     fetchData()

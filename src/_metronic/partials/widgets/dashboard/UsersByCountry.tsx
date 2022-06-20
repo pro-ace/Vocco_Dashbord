@@ -21,6 +21,11 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
       const {data: res} = await getusersbycountry();
       setUsersCountryData(res.data);
       setTotalUsers(res.totalCount);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);
@@ -32,9 +37,6 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
         <h3 className="card-title align-items-start flex-column">
           <span className="card-label fw-bolder text-gray-800">Users by Country</span>
         </h3>
-        {/* <div className="card-toolbar">
-          <a href="../../demo1/dist/apps/ecommerce/sales/listing.html" className="btn btn-sm btn-light">View All</a>
-        </div> */}
       </div>
       <div
         className="card-body pt-0 scroll-y h-200px"
@@ -76,7 +78,6 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
           }) : null
         }
       </div>
-      {/* end::Body */}
     </div>
   )
 }

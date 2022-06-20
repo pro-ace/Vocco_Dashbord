@@ -71,6 +71,11 @@ const EvolutionOfDownloadsThisMonth: React.FC<Props> = ({className}) => {
         perc = (res.devices.length - res.lmNumber) / res.lmNumber * 100;
       }
       setPercent(perc);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);

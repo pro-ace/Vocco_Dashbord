@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState} from 'react'
+import { useState } from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
-import {useFormik} from 'formik'
-import {useAuth} from '../core/Auth'
-import {Alert} from 'react-bootstrap'
-import {getUserByToken, login} from '../core/_requests'
+import { useFormik } from 'formik'
+import { useAuth } from '../core/Auth'
+import { Alert } from 'react-bootstrap'
+import { login } from '../core/_requests'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
 import {useIntl} from 'react-intl'
-import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
 import {AsideMenuItem} from './AsideMenuItem'
 
 export function AsideMenuMain() {

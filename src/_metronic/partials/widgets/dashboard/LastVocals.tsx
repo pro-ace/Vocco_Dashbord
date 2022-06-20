@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
 import {getLastVocals} from './core/_requests'
 import {VocalModel} from './core/_models'
 
@@ -15,6 +14,11 @@ const LastVocals: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getLastVocals();
       setLastVocals(res.lastVocals)
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);

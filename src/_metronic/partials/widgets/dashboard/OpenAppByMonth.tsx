@@ -63,6 +63,11 @@ const OpenAppByMonth: React.FC<Props> = ({className}) => {
       const {data: res} = await getopenappcount();
       setOpenAppCount(res.data);
       setTotalOpenAppCount(res.total);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
   
     fetchData()

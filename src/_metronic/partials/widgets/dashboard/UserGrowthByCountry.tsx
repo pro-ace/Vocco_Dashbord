@@ -122,6 +122,11 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
       // Make stuff animate on load
       series.appear();
       chart.appear(1000, 100);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);

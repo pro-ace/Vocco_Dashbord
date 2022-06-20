@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {getusersdaily} from './core/_requests'
@@ -23,34 +22,29 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
       setLastUsers(res.lastUsers);
       setAvgAge(res.avgAge);
       setMFPercent(res.mfPercent);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
-    fetchData()
-      .catch(console.error);
+      fetchData()
+        .catch(console.error);
   }, [])
 
   return (
     <div className={`card ${className}`}>
-      {/* begin::Header */}
       <div className="card-header pt-5">
-        {/* begin::Title */}
         <div className="card-title d-flex flex-column">
-          {/* begin::Amount */}
           <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">
             <a href="/apps/user-management/users" className='text-white'>
               {todayUsers}
             </a>
           </span>
-          {/* end::Amount */}
-          {/* begin::Subtitle */}
           <span className="text-gray-400 pt-1 fw-bold fs-6">New users today</span>
-          {/* end::Subtitle */}
         </div>
-        {/* end::Title */}
       </div>
-      {/* end::Header */}
-      {/* begin::Body */}
       <div className="card-body d-flex flex-column justify-content-end pe-0">
-        {/* begin::Title */}
         <div className='d-flex fs-6 fw-bold align-items-center me-10'>
           <span className="text-gray-500 flex-grow-1 me-4">Avg age</span>
           <span className="fw-boldest text-gray-700 text-xxl-end">{avgAge.toFixed()}</span>
@@ -68,8 +62,6 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
             Today’s Voccers
           </Link>
         </span>
-        {/* end::Title */}
-        {/* begin::Users group */}
         <div className="symbol-group symbol-hover flex-nowrap">
           {
             lastUsers.map((eUser, index) => {
@@ -87,14 +79,12 @@ const DailyNewUsers: React.FC<Props> = ({className}) => {
             })
           }
           {totalUsers > 6 ? 
-            <a href="#" className="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
+            <span className="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
               <span className="symbol-label bg-light text-gray-400 fs-8 fw-bolder">+{totalUsers * 1 - 6}</span>
-            </a> : <></>
+            </span> : <></>
           }
         </div>
-        {/* end::Users group */}
       </div>
-      {/* end::Body */}
     </div>
   )
 }

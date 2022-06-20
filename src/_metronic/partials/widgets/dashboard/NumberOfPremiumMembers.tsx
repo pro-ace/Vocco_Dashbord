@@ -64,6 +64,11 @@ const NumberOfPremiumMembers: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getpremiumusersbymonth();
       setPremiumUsers(res.premiumUsers);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
   
     fetchData()

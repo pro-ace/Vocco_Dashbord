@@ -63,6 +63,11 @@ const GetInviteLinks: React.FC<Props> = ({className}) => {
       const {data: res} = await getinvitelinks();
       setInviteLinks(res.data);
       setTotalInviteLinks(res.total);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
   
     fetchData()

@@ -12,6 +12,11 @@ const TopUsers: React.FC<Props> = ({className}) => {
     const fetchData = async () => {
       const {data: res} = await getTopUsers();
       setTopUsers(res);
+
+      setTimeout(() => {
+        fetchData()
+          .catch(console.error);
+      }, 7200000)
     }
     fetchData()
       .catch(console.error);
