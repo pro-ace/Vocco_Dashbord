@@ -7,6 +7,7 @@ export type User = {
   dob?: string,
   gender?: string,
   country?: string,
+  phone_number?:string,
   position?: string,
   premium?: string,
   role?: string
