@@ -8,6 +8,7 @@ import {UserSelectionHeader} from './UserSelectionHeader'
 import { UserBirthday } from './UserBirthday'
 import { UserGender } from './UserGender'
 import {User} from '../../core/_models'
+import { UserPhoneNumberCell } from './UserPhoneNumberCell'
 
 const usersColumns: ReadonlyArray<Column<User>> = [
   {
@@ -35,6 +36,13 @@ const usersColumns: ReadonlyArray<Column<User>> = [
     <UserCustomHeader tableProps={props} title='country'/>
     ),
     accessor: 'country',
+  },
+  {
+    Header: (props) => (
+      <UserCustomHeader tableProps={props} title='Phone Number' className='min-w-125px' />
+    ),
+    id: 'phone_number',
+    Cell: ({...props}) => <UserPhoneNumberCell phone_number={props.data[props.row.index].phoneNumber} />,
   },
   {
     Header: (props) => (
