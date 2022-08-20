@@ -3,6 +3,7 @@ import {
   SubscribeCountModel, 
   NewUsersThisWeekModel, 
   NewUsersThisMonthModel, 
+  totalRecordsModel,
   DailyUsersModel, 
   PremiumUsersByMonthModel,
   TopCategoryVocalModel,
@@ -30,6 +31,10 @@ export function getnewusersthisweek() {
 
 export function getuserscountmonth() {
   return axios.get<NewUsersThisMonthModel>(`${ADMIN_API_URL}/getuserscountmonth`);
+}
+
+export function gettotalrecords() {
+  return axios.get<totalRecordsModel>(`${ADMIN_API_URL}/gettotalrecord`);
 }
 
 export function getusersdaily() {

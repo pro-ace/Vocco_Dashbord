@@ -16,6 +16,7 @@ import {
   UsersByCountry,
   UserGrowthByCountry,
   DurationVocals,
+  TotalRecords,
   MapDistribution,
   OpenAppByMonth,
   GetInviteLinks,
@@ -103,6 +104,11 @@ const DashboardPage: FC = () => (
           className='card-xl-stretch mb-xl-8'
           chartColor='primary'
           chartHeight='200px'
+        />
+      </div>
+      <div className='col-xl-4 mb-xl-10'>
+        <TotalRecords
+          className='card-xl-stretch mb-xl-8'
         />
       </div>
     </div>

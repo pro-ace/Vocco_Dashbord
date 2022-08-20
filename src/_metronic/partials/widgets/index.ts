@@ -16,10 +16,7 @@ export * from './dashboard/OpenAppByMonth'
 export * from './dashboard/GetInviteLinks'
 export * from './dashboard/GetShareStories'
 export * from './dashboard/GetSeesionPerTime'
-
-
-
-
+export * from './dashboard/TotalRecords'
 
 // lists
 export * from './lists/ListsWidget5'

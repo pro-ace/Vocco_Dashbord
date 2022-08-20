@@ -35,6 +35,10 @@ export const initialUser: User = {
   email: '',
 }
 
+export interface userRecordsNumberModel {
+  count: number
+}
+
 // Dove Add S@...
 export interface userInfoModel {
   data: {

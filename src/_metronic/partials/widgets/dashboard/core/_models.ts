@@ -22,6 +22,10 @@ export interface NewUsersThisMonthModel {
   growthPercent: number
 }
 
+export interface totalRecordsModel {
+  count: number
+}
+
 export interface UserAddressModel {
   addressLine: string
   city: string
