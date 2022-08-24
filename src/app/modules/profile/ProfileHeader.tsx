@@ -1,34 +1,37 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
+import { userInfoModel } from './core/_models'
 import { getUserInfo, getUserRecordsNumber } from './core/_requests'
 import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
-  const [firstname, setFirstname] = useState<string>('');
-  const [lastname, setLastname] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [dob, setDob] = useState<Date>();
-  const [gender, setGender] = useState<string>('');
-  const [country, setCountry] = useState<string>('');
-  const [premium, setPremium] = useState<string>('');
-  const [avatarUrl, setAvatarUrl] = useState<string>('');
   const [userRcordsNumber, setUserRecordsNumber] = useState<number>(0);
-
+  const [profileData, setProfileData] = useState<userInfoModel>(
+    {
+      "data": {
+          "email": "NoEail",
+          "name": "NoName",
+          "firstname": "NoName",
+          "lastname": "NoName",
+          "dob": new Date(),
+          "gender": "m",
+          "premium": "none",
+          "country": "NoCountry",
+          "avatar": {
+              "url": "",
+              "link": ""
+          }
+      }
+    }
+  );
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getUserInfo(userId ? userId : '');
-      setFirstname(res.data.firstname);
-      setLastname(res.data.lastname);
-      setName(res.data.name);
-      setEmail(res.data.email);
-      setDob(res.data.dob);
-      setGender(res.data.gender);
-      setCountry(res.data.country);
-      setPremium(res.data.premium);
-      setAvatarUrl(res.data.avatar.url);
+      if(res.data){
+        setProfileData(res)
+      }
     }
 
     const fetchPersonalRecords = async () => {
@@ -56,28 +59,37 @@ const ProfileHeader: React.FC = () => {
             <div className="card mb-5 mb-xl-8">
               <div className="card-body pt-15">
                 <div className="d-flex flex-center flex-column mb-5">
-                  <div className="symbol symbol-150px symbol-circle mb-7">
-                    <img src={avatarUrl} alt="avatar link" />
+                  {/* <div className="symbol symbol-150px symbol-circle mb-7"> */}
+                    {/* <img src={avatarUrl} alt="avatar link" /> */}
+                    {
+                      profileData?.data.avatar.url ?
+                      <div className="symbol symbol-150px symbol-circle mb-7" data-bs-toggle="tooltip" title="Michael Eberon">
+                        <img alt="Pic" src={profileData?.data.avatar.url} />
+                      </div> :
+                      <div className="symbol symbol-150px symbol-circle mb-7" data-bs-toggle="tooltip" title="Alan Warden">
+                        <span className="symbol-label bg-warning text-inverse-warning fw-bolder">{profileData?.data.firstname ? profileData?.data.firstname.charAt(0).toUpperCase() : "N"}</span>
                   </div>
-                  <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{firstname} {lastname}</a>
-                  <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{name}</a>
+                    }
+                  {/* </div> */}
+                  <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{profileData?.data.firstname} {profileData?.data.lastname}</a>
+                  <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{profileData?.data.name}</a>
                 </div>
                 <div className="d-flex flex-stack fs-4 py-3">
                   <div className="fw-bolder">Details</div>
-                  {premium !== 'none' ? <div className="badge badge-light-info d-inline">Premium user</div> : null}
+                  {profileData?.data.premium !== 'none' ? <div className="badge badge-light-info d-inline">Premium user</div> : null}
                 </div>
                 <div className="separator separator-dashed my-3"></div>
                 <div className="pb-5 fs-6">
                   <div className="fw-bolder mt-5">EMAIL</div>
                   <div className="text-gray-600">
-                    <a href="#" className="text-gray-600 text-hover-primary">{email}</a>
+                    <a href="#" className="text-gray-600 text-hover-primary">{profileData?.data.email}</a>
                   </div>
                   <div className="fw-bolder mt-5">COUNTRY</div>
-                  <div className="text-gray-600">{country}</div>
+                  <div className="text-gray-600">{profileData?.data.country}</div>
                   <div className="fw-bolder mt-5">GENDER</div>
-                  <div className="text-gray-600">{gender === 'm' ? 'Male' : (gender === 'f' ? 'Female' : null)}</div>
+                  <div className="text-gray-600">{profileData?.data.gender === 'm' ? 'Male' : (profileData?.data.gender === 'f' ? 'Female' : null)}</div>
                   <div className="fw-bolder mt-5">BIRTHDAY</div>
-                  <div className="text-gray-600">{dob ? new Date(dob).toDateString() : null}</div>
+                  <div className="text-gray-600">{profileData?.data.dob ? new Date(profileData?.data.dob).toDateString() : null}</div>
                 </div>
               </div>
             </div>
@@ -109,7 +121,7 @@ const ProfileHeader: React.FC = () => {
                     </div>
                   </div>
                   <div className="col">
-                    { premium !== 'none' ?
+                    { profileData?.data.premium !== 'none' ?
                       <a href="#" className="card bg-info hoverable h-md-100">
                         <div className="card-body">
                           <span className="svg-icon svg-icon-white svg-icon-3x ms-n1">
@@ -119,7 +131,7 @@ const ProfileHeader: React.FC = () => {
                             </svg>
                           </span>
                           <div className="text-white fw-bolder fs-2 mt-5">Premium Member</div>
-                          <div className="fw-bold text-white">{premium.toUpperCase()}</div>
+                          <div className="fw-bold text-white">{profileData?.data.premium.toUpperCase()}</div>
                         </div>
                       </a> :
                       <a href="#" className="card h-md-100">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react'
 import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
 import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
@@ -42,7 +43,6 @@ const UsersPage = () => {
       pAudio.play();
       addToast(`${res.email} is registered as premium uer.`, { appearance: 'success' });
     })
-    
   }, [socketInstance])
 
   return (

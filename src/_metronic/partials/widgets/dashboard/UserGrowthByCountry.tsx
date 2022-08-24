@@ -24,6 +24,8 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
             icon: `https://www.amcharts.com/wp-content/uploads/flags/${eCountry.country.toLowerCase().replace(" ", "-")}.svg`,
             columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
           }
+        } else{
+          return null;
         }
       })
 

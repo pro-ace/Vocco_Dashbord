@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {FC, useEffect, useState} from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
@@ -90,8 +91,8 @@ const DashboardPage: FC = () => (
         />
       </div>
       <div className='col-xl-8 mb-xl-10'>
-        <UserGrowthByCountry 
-          className='card-flush h-xl-100' 
+        <UserGrowthByCountry
+          className='card-flush h-xl-100'
         />
       </div>
     </div>
@@ -153,7 +154,7 @@ const DashboardPage: FC = () => (
       </div>
     </div>
     {/* end::Row */}
-    
+
   </>
 )
 
@@ -179,7 +180,6 @@ const DashboardWrapper: FC = () => {
       pAudio.play();
       addToast(`${res.email} is registered as premium uer.`, { appearance: 'success' });
     })
-    
   }, [socketInstance])
 
   return (

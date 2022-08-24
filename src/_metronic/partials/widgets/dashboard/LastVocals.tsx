@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {getLastVocals} from './core/_requests'
 import {VocalModel} from './core/_models'
+import { Link } from 'react-router-dom'
 
 type Props = {
   className: string,
@@ -51,7 +52,9 @@ const LastVocals: React.FC<Props> = ({className}) => {
                 return (
                   <tr key={index}>
                     <td>
-                      <span className="text-gray-800 text-hover-primary">{eVocal?.user.name}</span>
+                      <Link to={`/apps/user-management/users/profile/${eVocal.user.id}`}>
+                        <span className="text-gray-800 text-hover-primary">{eVocal?.user.name}</span>
+                      </Link>
                     </td>
                     <td className="text-end">{eVocal?.answersCount}</td>
                     <td className="text-end">

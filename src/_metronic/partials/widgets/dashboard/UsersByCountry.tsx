@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect, useState, Fragment} from 'react'
+import { Link } from 'react-router-dom'
 import {getusersbycountry} from './core/_requests'
 
 type Props = {
@@ -56,7 +57,10 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
                   <img src={`media/flags/${flag}`} className="me-4 w-25px" style={{borderRadius: "4px"}} alt="" />
                   <div className="d-flex flex-stack flex-row-fluid d-grid gap-2">
                     <div className="me-5">
-                      <a href="#" className="text-gray-800 fw-bolder text-hover-primary fs-6">{eCountry.country}</a>
+                      <Link to={`/apps/user-management/users`} className="text-gray-800 fw-bolder text-hover-primary fs-6">
+                        {eCountry.country}
+                      </Link>
+                      {/* <a href="#" className="text-gray-800 fw-bolder text-hover-primary fs-6">{eCountry.country}</a> */}
                     </div>
                     <div className="d-flex align-items-center">
                       <span className="text-gray-800 fw-bolder fs-6 me-3 d-block">

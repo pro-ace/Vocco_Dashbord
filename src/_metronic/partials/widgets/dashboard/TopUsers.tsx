@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {getTopUsers} from './core/_requests'
 import {topUserModel} from './core/_models'
+import { Link } from 'react-router-dom'
 type Props = {
   className: string,
 }
@@ -43,12 +44,14 @@ const TopUsers: React.FC<Props> = ({className}) => {
           </thead>
           <tbody className="fw-bolder text-gray-600">
             {
-              topUsers?.data ? 
+              topUsers?.data ?
               topUsers.data.map((eData, index) => {
                 return (
                   <tr key={index}>
                     <td>
-                      <span className="text-gray-800 text-hover-primary">{eData.user_name}</span>
+                      <Link to={`/apps/user-management/users/profile/${eData.user_id}`}>
+                        <span className="text-gray-800 text-hover-primary">{eData.user_name}</span>
+                      </Link>
                     </td>
                     <td className="">{eData.record.category ? eData.record.category : "Fun"}</td>
                     <td className="">{new Date(eData.record.createdAt).toDateString()}</td>

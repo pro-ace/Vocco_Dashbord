@@ -32,9 +32,7 @@ const usersColumns: ReadonlyArray<Column<User>> = [
     Cell: ({...props}) => <UserBirthday dob={props.data[props.row.index].dob} />,
   },
   {
-    Header: (props) => (
-    <UserCustomHeader tableProps={props} title='country'/>
-    ),
+    Header: (props) => <UserCustomHeader tableProps={props} title='country'/>,
     accessor: 'country',
   },
   {
