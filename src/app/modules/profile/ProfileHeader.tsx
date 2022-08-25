@@ -61,15 +61,15 @@ const ProfileHeader: React.FC = () => {
                 <div className="d-flex flex-center flex-column mb-5">
                   {/* <div className="symbol symbol-150px symbol-circle mb-7"> */}
                     {/* <img src={avatarUrl} alt="avatar link" /> */}
-                    {
-                      profileData?.data.avatar.url ?
+                    {profileData?.data.avatar?.url ? (
                       <div className="symbol symbol-150px symbol-circle mb-7" data-bs-toggle="tooltip" title="Michael Eberon">
                         <img alt="Pic" src={profileData?.data.avatar.url} />
-                      </div> :
+                      </div>
+                    ) : (
                       <div className="symbol symbol-150px symbol-circle mb-7" data-bs-toggle="tooltip" title="Alan Warden">
-                        <span className="symbol-label bg-warning text-inverse-warning fw-bolder">{profileData?.data.firstname ? profileData?.data.firstname.charAt(0).toUpperCase() : "N"}</span>
-                  </div>
-                    }
+                        <span className="symbol-label bg-warning text-inverse-warning fw-bolder">{profileData?.data.firstname ? profileData?.data.firstname.charAt(0).toUpperCase() : profileData?.data.name.charAt(0).toUpperCase()}</span>
+                      </div>
+                    )}
                   {/* </div> */}
                   <a href="#" className="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{profileData?.data.firstname} {profileData?.data.lastname}</a>
                   <a href="#" className="fs-5 fw-bold text-muted text-hover-primary mb-6">{profileData?.data.name}</a>
