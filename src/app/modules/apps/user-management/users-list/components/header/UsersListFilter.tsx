@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useContext, useEffect, useState} from 'react'
 import {MenuComponent} from '../../../../../../../_metronic/assets/ts/components'
 import {initialQueryState} from '../../../../../../../_metronic/helpers'
@@ -21,16 +22,16 @@ const UsersListFilter = () => {
   //   updateState({filter: undefined, ...initialQueryState})
   // }
 
-  useEffect(() => {
-    const filterFuc = (country:string) => {
-      updateState({
-        filter: {country},
-        ...initialQueryState,
-      })
-    }
+  const filterFuc = (country:string) => {
+    updateState({
+      filter: {country},
+      ...initialQueryState,
+    })
+  }
 
+  useEffect(() => {
     filterFuc(filterData)
-  }, [filterData, updateState])
+  }, [filterData])
 
   useEffect(() => {
     setFilterData(country)
