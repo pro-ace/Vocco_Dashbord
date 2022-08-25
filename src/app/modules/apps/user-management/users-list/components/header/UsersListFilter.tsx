@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {MenuComponent} from '../../../../../../../_metronic/assets/ts/components'
 import {initialQueryState, KTSVG} from '../../../../../../../_metronic/helpers'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
 import {useQueryResponse} from '../../core/QueryResponseProvider'
 import {getusersbycountry} from '../../../../../../../_metronic/partials/widgets/dashboard/core/_requests'
+import { CountryContext } from '../../../../../../../Context'
 
 type CountryData = {
   users_count: number,
@@ -16,18 +17,28 @@ const UsersListFilter = () => {
   const [role, setRole] = useState<string | undefined>()
   const [lastLogin, setLastLogin] = useState<string | undefined>()
   const [countryData, setCountryData] = useState<Array<CountryData>>()
-  const [country, setCountry] = useState<string>('All country')
+  // const [country, setCountry] = useState<string>('All country')
+  const [filterData, setFilterData] = useState<string>('All Country')
+  const {country, setCountry} = useContext(CountryContext)
 
   // const resetData = () => {
   //   updateState({filter: undefined, ...initialQueryState})
   // }
 
-  const filterData = (country:string) => {
+  const filterFuc = (country:string) => {
     updateState({
       filter: {country},
       ...initialQueryState,
     })
   }
+
+  useEffect(() => {
+    filterFuc(filterData)
+  }, [filterData])
+
+  useEffect(() => {
+    setFilterData(country)
+  }, [country])
 
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -57,8 +68,13 @@ const UsersListFilter = () => {
         data-allow-clear='true'
         data-kt-user-table-filter='role'
         data-hide-search='true'
-        onChange={(e) => filterData(e.target.value)}
-        value={country}
+        onChange={(e) =>
+          {
+            setFilterData(e.target.value)
+            setCountry('')
+          }
+        }
+        value={filterData}
       >
         <option value=''>All Country</option>
         {

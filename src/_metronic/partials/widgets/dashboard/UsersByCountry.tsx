@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useState, Fragment} from 'react'
+import React, {useEffect, useState, Fragment, useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { CountryContext } from '../../../../Context'
 import {getusersbycountry} from './core/_requests'
 
 type Props = {
@@ -17,9 +18,10 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
   const navigate = useNavigate();
   const [usersCountryData, setUsersCountryData] = useState<Array<CountryData>>([]);
   const [totalUsers, setTotalUsers] = useState<number>(0);
+  const {setCountry} = useContext(CountryContext)
 
   const setCountryFunc = (country:string) => {
-    
+    setCountry(country)
     navigate('/apps/user-management/users', {replace: true})
   }
 
@@ -62,8 +64,8 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
                 <div className="d-flex flex-stack">
                   <img src={`media/flags/${flag}`} className="me-4 w-25px" style={{borderRadius: "4px"}} alt="" />
                   <div className="d-flex flex-stack flex-row-fluid d-grid gap-2">
-                    <div 
-                      className="me-5"
+                    <div
+                      className="me-5 cursor-pointer"
                       onClick={() => {setCountryFunc(eCountry.country)}}
                     >
                       {/* <Link to={`/apps/user-management/users`} className="text-gray-800 fw-bolder text-hover-primary fs-6"> */}
