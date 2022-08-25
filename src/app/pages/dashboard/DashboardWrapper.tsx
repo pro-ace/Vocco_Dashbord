@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC} from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
 // import { useAuth } from '../../modules/auth'
-import { useToasts } from 'react-toast-notifications';
+// import { useToasts } from 'react-toast-notifications';
 import {
   UserGrowthWidget,
   TotalNumberOfNewUserWeek,

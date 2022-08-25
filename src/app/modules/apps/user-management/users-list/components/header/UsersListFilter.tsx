@@ -21,16 +21,16 @@ const UsersListFilter = () => {
   //   updateState({filter: undefined, ...initialQueryState})
   // }
 
-  const filterFuc = (country:string) => {
-    updateState({
-      filter: {country},
-      ...initialQueryState,
-    })
-  }
-
   useEffect(() => {
+    const filterFuc = (country:string) => {
+      updateState({
+        filter: {country},
+        ...initialQueryState,
+      })
+    }
+
     filterFuc(filterData)
-  }, [filterData])
+  }, [filterData, updateState])
 
   useEffect(() => {
     setFilterData(country)
