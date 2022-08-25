@@ -48,7 +48,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                     let category = eCat.category;
                     if (category === "") category = "All";
                     return (
-                      <Nav.Item className="nav-item mb-3 me-3 me-lg-6" key={index}>
+                      <Nav.Item className="nav-item mb-3 me-3 me-lg-6 cursor-pointer" key={index}>
                         <Nav.Link eventKey={index} className={`nav-link d-flex justify-content-between flex-column flex-center overflow-hidden w-80px h-85px py-4`} data-bs-toggle="pill">
                           <div className="nav-icon">
                             <img alt="" src={`/media/stock/categories/${category.toLowerCase()}.png`} className="" />

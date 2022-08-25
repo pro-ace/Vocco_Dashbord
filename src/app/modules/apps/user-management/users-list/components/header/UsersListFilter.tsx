@@ -1,8 +1,7 @@
 import {useContext, useEffect, useState} from 'react'
 import {MenuComponent} from '../../../../../../../_metronic/assets/ts/components'
-import {initialQueryState, KTSVG} from '../../../../../../../_metronic/helpers'
+import {initialQueryState} from '../../../../../../../_metronic/helpers'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
-import {useQueryResponse} from '../../core/QueryResponseProvider'
 import {getusersbycountry} from '../../../../../../../_metronic/partials/widgets/dashboard/core/_requests'
 import { CountryContext } from '../../../../../../../Context'
 
@@ -13,9 +12,6 @@ type CountryData = {
 
 const UsersListFilter = () => {
   const {updateState} = useQueryRequest()
-  const {isLoading} = useQueryResponse()
-  const [role, setRole] = useState<string | undefined>()
-  const [lastLogin, setLastLogin] = useState<string | undefined>()
   const [countryData, setCountryData] = useState<Array<CountryData>>()
   // const [country, setCountry] = useState<string>('All country')
   const [filterData, setFilterData] = useState<string>('All Country')

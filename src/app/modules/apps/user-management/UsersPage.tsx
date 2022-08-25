@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useEffect, useState} from 'react'
+import React from 'react'
 import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
 import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
 import {UsersListWrapper} from './users-list/UsersList'
-import { useAuth } from '../../auth'
-import { useToasts } from 'react-toast-notifications';
+// import { useAuth } from '../../auth'
+// import { useToasts } from 'react-toast-notifications';
 
 const usersBreadcrumbs: Array<PageLink> = [
   {
