@@ -9,7 +9,7 @@ import {UsersListLoading} from '../components/loading/UsersListLoading'
 import {UsersListPagination} from '../components/pagination/UsersListPagination'
 import {KTCardBody} from '../../../../../../_metronic/helpers'
 
-const UsersTable = () => {
+const UsersTable = (props:any) => {
   const users = useQueryResponseData()
   const isLoading = useQueryResponseLoading()
   const data = useMemo(() => users, [users])
@@ -18,10 +18,11 @@ const UsersTable = () => {
     columns,
     data,
   })
+
   return (
     <KTCardBody className='py-4'>
       <div className='table-responsive'>
-        <table
+        <table ref={props.userTableRef}
           id='kt_table_users'
           className='table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer'
           {...getTableProps()}

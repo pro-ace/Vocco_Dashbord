@@ -5,14 +5,17 @@ import {UsersListHeader} from './components/header/UsersListHeader'
 import {UsersTable} from './table/UsersTable'
 import {UserEditModal} from './user-edit-modal/UserEditModal'
 import {KTCard} from '../../../../../_metronic/helpers'
+import { useRef } from 'react'
 
 const UsersList = () => {
   const {itemIdForUpdate} = useListView()
+  const userTableRef:any = useRef(null)
+
   return (
     <>
       <KTCard>
-        <UsersListHeader />
-        <UsersTable />
+          <UsersListHeader userTableRef={userTableRef}/>
+          <UsersTable userTableRef={userTableRef}/>
       </KTCard>
       {itemIdForUpdate !== undefined && <UserEditModal />}
     </>

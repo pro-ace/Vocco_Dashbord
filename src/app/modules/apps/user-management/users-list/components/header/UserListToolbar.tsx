@@ -1,8 +1,9 @@
+import { DownloadTableExcel } from 'react-export-table-to-excel'
 import {KTSVG} from '../../../../../../../_metronic/helpers'
 import {useListView} from '../../core/ListViewProvider'
 import {UsersListFilter} from './UsersListFilter'
 
-const UsersListToolbar = () => {
+const UsersListToolbar = (props:any) => {
   const {setItemIdForUpdate} = useListView()
   const openAddUserModal = () => {
     setItemIdForUpdate(null)
@@ -13,10 +14,16 @@ const UsersListToolbar = () => {
       <UsersListFilter />
 
       {/* begin::Export */}
-      <button type='button' className='btn btn-light-primary me-3'>
-        <KTSVG path='/media/icons/duotune/arrows/arr078.svg' className='svg-icon-2' />
-        Export
-      </button>
+      <DownloadTableExcel
+        filename='users table'
+        sheet='users'
+        currentTableRef={props.userTableRef.current}
+      >
+        <button type='button' className='btn btn-light-primary me-3'>
+          <KTSVG path='/media/icons/duotune/arrows/arr078.svg' className='svg-icon-2' />
+          Export
+        </button>
+      </DownloadTableExcel>
       {/* end::Export */}
 
       {/* begin::Add user */}
