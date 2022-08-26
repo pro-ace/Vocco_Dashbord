@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useState, Fragment, useContext} from 'react'
+import React, { Fragment, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CountryContext } from '../../../../Context'
-import {getusersbycountry} from './core/_requests'
 
 type Props = {
   className: string,
@@ -16,29 +15,12 @@ type CountryData = {
 const UsersByCountry: React.FC<Props> = ({className}) => {
 
   const navigate = useNavigate();
-  const [usersCountryData, setUsersCountryData] = useState<Array<CountryData>>([]);
-  const [totalUsers, setTotalUsers] = useState<number>(0);
-  const {setCountry} = useContext(CountryContext)
+  const { setCountry, totalUsers, usersByCountry } = useContext(CountryContext)
 
   const setCountryFunc = (country:string) => {
     setCountry(country)
     navigate('/apps/user-management/users', {replace: true})
   }
-
-  useEffect(() =>{
-    const fetchData = async () => {
-      const {data: res} = await getusersbycountry();
-      setUsersCountryData(res.data);
-      setTotalUsers(res.totalCount);
-
-      setTimeout(() => {
-        fetchData()
-          .catch(console.error);
-      }, 7200000)
-    }
-    fetchData()
-      .catch(console.error);
-  }, [])
 
   return (
     <div className={`card ${className}`}>
@@ -57,7 +39,7 @@ const UsersByCountry: React.FC<Props> = ({className}) => {
         data-kt-scroll-offset='0px'
       >
         {
-          usersCountryData ? usersCountryData.map((eCountry, index) => {
+          usersByCountry ? usersByCountry.map((eCountry: CountryData, index: number) => {
             const flag = `${eCountry.country.toLowerCase().replace(" ", "-")}.svg`
             return (
               <Fragment key={index}>

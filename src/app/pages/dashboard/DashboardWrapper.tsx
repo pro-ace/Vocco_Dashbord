@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {FC} from 'react'
+import React, {FC, useContext, useEffect } from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
 // import { useAuth } from '../../modules/auth'
@@ -24,8 +24,25 @@ import {
   GetShareStories,
   GetSeesionPerTime
 } from '../../../_metronic/partials/widgets'
+import { CountryContext } from '../../../Context'
+import { getusersbycountry } from '../../../_metronic/partials/widgets/dashboard/core/_requests'
 
-const DashboardPage: FC = () => (
+const DashboardPage: FC = () => {
+  const { setUsersByCountry, setTotalUsers } = useContext(CountryContext);
+
+  useEffect(() => {
+    const fetchUsersByCountry = async () => {
+      await getusersbycountry().then(res => {
+        if (res.data) {
+          setUsersByCountry(res.data.data);
+          setTotalUsers(res.data.totalCount);
+        }
+      })
+    }
+    fetchUsersByCountry();
+  }, []);
+
+  return (
   <>
     {/* begin::Row */}
     <div className='row g-5 g-xl-10 mb-xl-10'>
@@ -156,7 +173,8 @@ const DashboardPage: FC = () => (
     {/* end::Row */}
 
   </>
-)
+  );
+}
 
 const DashboardWrapper: FC = () => {
   // const {socketInstance} = useAuth();
