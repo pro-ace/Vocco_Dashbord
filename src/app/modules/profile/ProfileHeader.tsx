@@ -77,7 +77,7 @@ const ProfileHeader: React.FC = () => {
                       </div>
                     ) : (
                       <div className="symbol symbol-150px symbol-circle mb-7" data-bs-toggle="tooltip" title="Alan Warden">
-                        <span className="symbol-label bg-warning text-inverse-warning fw-bolder">{profileData?.data.firstname ? profileData?.data.firstname.charAt(0).toUpperCase() : profileData?.data.name.charAt(0).toUpperCase()}</span>
+                        <span className="symbol-label bg-warning text-inverse-warning fw-bolder fs-1">{profileData?.data.firstname ? profileData?.data.firstname.charAt(0).toUpperCase() : profileData?.data.name.charAt(0).toUpperCase()}</span>
                       </div>
                     )}
                   {/* </div> */}
