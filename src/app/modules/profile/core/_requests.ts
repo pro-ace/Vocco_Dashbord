@@ -62,10 +62,10 @@ const getUserTransactionHistory = (query: string, userId: string): Promise<Trans
     .then((d: AxiosResponse<TransactionQueryResponse>) => d.data)
 }
 
-const getUserTotalLitens = (userId: string): Promise<userTotalLitensModel> => {
+const getUserTotalListens = (userId: string): Promise<userTotalLitensModel> => {
   return axios
     .get(`${GET_USRR_TOTAL_LISTENS}?&id=${userId}`)
     .then((d: AxiosResponse<userTotalLitensModel>) => d.data)
 }
 
-export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory, getUserRecordsNumber, getUserTotalLitens}
+export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory, getUserRecordsNumber, getUserTotalListens}

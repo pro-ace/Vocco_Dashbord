@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import { userInfoModel } from './core/_models'
-import { getUserInfo, getUserRecordsNumber, getUserTotalLitens } from './core/_requests'
+import { getUserInfo, getUserRecordsNumber, getUserTotalListens } from './core/_requests'
 import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
   const [userRcordsNumber, setUserRecordsNumber] = useState<number>(0);
-  const [userTotalLitenStory , setUserTotalLitenStory] = useState<number>(0);
+  const [userTotalListenStory , setUserTotalListenStory] = useState<number>(0);
   const [profileData, setProfileData] = useState<userInfoModel>(
     {
       "data": {
@@ -27,38 +27,37 @@ const ProfileHeader: React.FC = () => {
       }
     }
   );
+
   useEffect(() =>{
-    const fetchData = async () => {
-      const {data: res} = await getUserInfo(userId ? userId : '');
-      if(res.data){
-        setProfileData(res)
-      }
+    const fetchData = async (userId : string) => {
+      await getUserInfo(userId).then(res => {
+        if (res.data) {
+          setProfileData(res.data);
+        }
+      });
     }
 
-    const fetchPersonalRecords = async () => {
-      const res = await getUserRecordsNumber(userId ? userId : '');
-      setUserRecordsNumber(res.count);
-
+    const fetchPersonalRecords = async (userId: string) => {
+      await getUserRecordsNumber(userId).then(res => {
+        setUserRecordsNumber(res.count);
+      });
       setTimeout(() => {
-        fetchPersonalRecords()
-          .catch(console.error);
+        fetchPersonalRecords(userId)
       }, 7200000)
     }
 
-    const fetchTotalLitens = async () => {
-      const res = await getUserTotalLitens(userId ? userId : '');
-      console.log(res, "here");
-      if (res) setUserTotalLitenStory(res.count);
-
+    const fetchTotalListens = async (userId: string) => {
+      await getUserTotalListens(userId).then(res => {
+        setUserTotalListenStory(res.count);
+      })
       setTimeout(() => {
-        fetchTotalLitens()
-          .catch(console.error);
+        fetchTotalListens(userId)
       }, 7200000)
     }
 
-    fetchData().catch(console.error);
-    fetchPersonalRecords().catch(console.error);
-    fetchTotalLitens().catch(console.error);
+    fetchData(userId ?? '');
+    fetchPersonalRecords(userId ?? '');
+    fetchTotalListens(userId ?? '');
   }, [userId])
 
   return (
@@ -145,7 +144,7 @@ const ProfileHeader: React.FC = () => {
                                 <path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
                               </svg>
                             </span>
-                            <div className="ms-2"> {userTotalLitenStory} <span className="text-muted fs-4 fw-bold">Listen</span></div>
+                            <div className="ms-2"> {userTotalListenStory} <span className="text-muted fs-4 fw-bold">Listen</span></div>
                           </div>
                           <div className="fs-7 fw-normal text-muted">Earn reward points with every vocals.</div>
                         </div>

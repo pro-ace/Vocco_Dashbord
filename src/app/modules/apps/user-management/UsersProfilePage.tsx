@@ -4,7 +4,7 @@ import { ProfileHeader } from '../../profile/ProfileHeader'
 const usersBreadcrumbs: Array<PageLink> = [
     {
         title: 'User Management',
-        path: '/apps/user-management/users/profile',
+        path: '/apps/user-management/users',
         isSeparator: false,
         isActive: false,
     },
