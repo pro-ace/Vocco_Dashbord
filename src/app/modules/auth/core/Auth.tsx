@@ -76,7 +76,7 @@ const AuthProvider: FC = ({children}) => {
 }
 
 const AuthInit: FC = ({children}) => {
-  const {auth, logout, setCurrentUser} = useAuth()
+  const {auth, logout, setCurrentUser, saveAuth} = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
@@ -87,6 +87,7 @@ const AuthInit: FC = ({children}) => {
           const {data} = await getUserByToken(accessToken, refreshToken)
           if (data) {
             setCurrentUser(data)
+            saveAuth(data)
           }
         }
       } catch (error) {

@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { useFormik } from 'formik'
 import { useAuth } from '../core/Auth'
 import { Alert } from 'react-bootstrap'
-import { login } from '../core/_requests'
+import { login, getUserByToken } from '../core/_requests'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -43,10 +43,8 @@ export function Login() {
       try {
         const {data: auth} = await login(values.email, values.password)
         saveAuth(auth)
-        const user = {
-          id: auth.id
-        }
-        // const {data: user} = await getUserByToken(auth.accessToken)
+        const {data: user} = await getUserByToken(auth.accessToken, auth.refreshToken)
+        saveAuth(user)
         setCurrentUser(user)
       } catch (error) {
         setAlert(true);

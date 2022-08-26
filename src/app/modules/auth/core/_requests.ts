@@ -42,7 +42,7 @@ export function requestPassword(email: string) {
 }
 
 export function getUserByToken(accessToken: string, refreshToken: string) {
-  return axios.post<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {
+  return axios.post<AuthModel>(GET_USER_BY_ACCESSTOKEN_URL, {
       accessToken
     },
     {
