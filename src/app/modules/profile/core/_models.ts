@@ -39,7 +39,10 @@ export interface userRecordsNumberModel {
   count: number
 }
 
-// Dove Add S@...
+export interface userTotalLitensModel {
+  count: number
+}
+
 export interface userInfoModel {
   data: {
     email: string
@@ -85,4 +88,3 @@ export const initialQueryState: QueryState = {
   page: 1,
   items_per_page: 10,
 }
-// Dove Add E@...

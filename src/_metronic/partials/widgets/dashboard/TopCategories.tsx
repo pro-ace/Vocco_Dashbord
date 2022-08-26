@@ -91,7 +91,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                       <tr key={index}>
                                         <td>
                                           {/* <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" /> */}
-                                          <Link to={`/apps/user-management/users/profile/${eVocal.id}`}>
+                                          <Link to={`/apps/user-management/users/profile/${eVocal.user.id}`}>
                                             {eVocal.user.avatar.url ?
                                               <div className="symbol symbol-45px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon" key={index}>
                                                 <img alt="Pic" src={eVocal.user.avatar.url} />
@@ -103,7 +103,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                           </Link>
                                         </td>
                                         <td className="ps-0">
-                                          <Link to={`/apps/user-management/users/profile/${eVocal.id}`}>
+                                          <Link to={`/apps/user-management/users/profile/${eVocal.user.id}`}>
                                             <span className="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6 text-start pe-0">{eVocal.title}</span>
                                           </Link>
                                           <span className="text-gray-400 fw-bold fs-7 d-block text-start ps-0">{eVocal.user.name}</span>

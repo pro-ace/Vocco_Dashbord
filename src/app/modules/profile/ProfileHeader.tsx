@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import { userInfoModel } from './core/_models'
-import { getUserInfo, getUserRecordsNumber } from './core/_requests'
+import { getUserInfo, getUserRecordsNumber, getUserTotalLitens } from './core/_requests'
 import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
   const [userRcordsNumber, setUserRecordsNumber] = useState<number>(0);
+  const [userTotalLitenStory , setUserTotalLitenStory] = useState<number>(0);
   const [profileData, setProfileData] = useState<userInfoModel>(
     {
       "data": {
@@ -39,16 +40,25 @@ const ProfileHeader: React.FC = () => {
       setUserRecordsNumber(res.count);
 
       setTimeout(() => {
-        fetchData()
+        fetchPersonalRecords()
           .catch(console.error);
       }, 7200000)
     }
 
-    fetchData()
-      .catch(console.error);
+    const fetchTotalLitens = async () => {
+      const res = await getUserTotalLitens(userId ? userId : '');
+      console.log(res, "here");
+      if (res) setUserTotalLitenStory(res.count);
 
-    fetchPersonalRecords()
-      .catch(console.error);
+      setTimeout(() => {
+        fetchTotalLitens()
+          .catch(console.error);
+      }, 7200000)
+    }
+
+    fetchData().catch(console.error);
+    fetchPersonalRecords().catch(console.error);
+    fetchTotalLitens().catch(console.error);
   }, [userId])
 
   return (
@@ -97,7 +107,7 @@ const ProfileHeader: React.FC = () => {
           <div className="flex-lg-row-fluid ms-lg-15">
             <div className="tab-content" id="myTabContent">
               <div className="tab-pane fade show active" id="kt_ecommerce_customer_overview" role="tabpanel">
-                <div className="row row-cols-1 row-cols-md-2 mb-6 mb-xl-9">
+                <div className="row row-cols-1 row-cols-md-3 mb-6 mb-xl-9">
                   <div className="col">
                     <div className="card pt-4 h-md-100 mb-6 mb-md-0">
                       <div className="card-header border-0">
@@ -114,6 +124,28 @@ const ProfileHeader: React.FC = () => {
                               </svg>
                             </span>
                             <div className="ms-2"> {userRcordsNumber} <span className="text-muted fs-4 fw-bold">Records Posted</span></div>
+                          </div>
+                          <div className="fs-7 fw-normal text-muted">Earn reward points with every vocals.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="card pt-4 h-md-100 mb-6 mb-md-0">
+                      <div className="card-header border-0">
+                        <div className="card-title">
+                          <h2 className="fw-bolder">Total Listen</h2>
+                        </div>
+                      </div>
+                      <div className="card-body pt-0">
+                        <div className="fw-bolder fs-2">
+                          <div className="d-flex">
+                            <span className="svg-icon svg-icon-info svg-icon-2x">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
+                              </svg>
+                            </span>
+                            <div className="ms-2"> {userTotalLitenStory} <span className="text-muted fs-4 fw-bold">Listen</span></div>
                           </div>
                           <div className="fs-7 fw-normal text-muted">Earn reward points with every vocals.</div>
                         </div>

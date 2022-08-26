@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios'
 import {ID, Response} from '../../../../_metronic/helpers'
-import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse, userRecordsNumberModel} from './_models'
+import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse, userRecordsNumberModel, userTotalLitensModel} from './_models'
 
 const API_URL = process.env.REACT_APP_ADMIN_API_URL
 const USER_URL = `${API_URL}/user`
@@ -8,6 +8,7 @@ const GET_USERS_URL = `${API_URL}/getusers`
 const GET_USER_INFO_URL = `${API_URL}/getuserinfo`
 const GET_USER_TH_URL = `${API_URL}/getusertransactionhistory`;
 const GET_USER_RECORDS_NUMBER = `${API_URL}/getuserrecordsnumber`;
+const GET_USRR_TOTAL_LISTENS = `${API_URL}/getusertotallitens`;
 
 const getUsers = (query: string): Promise<UsersQueryResponse> => {
   return axios
@@ -61,4 +62,10 @@ const getUserTransactionHistory = (query: string, userId: string): Promise<Trans
     .then((d: AxiosResponse<TransactionQueryResponse>) => d.data)
 }
 
-export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory, getUserRecordsNumber}
+const getUserTotalLitens = (userId: string): Promise<userTotalLitensModel> => {
+  return axios
+    .get(`${GET_USRR_TOTAL_LISTENS}?&id=${userId}`)
+    .then((d: AxiosResponse<userTotalLitensModel>) => d.data)
+}
+
+export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory, getUserRecordsNumber, getUserTotalLitens}
