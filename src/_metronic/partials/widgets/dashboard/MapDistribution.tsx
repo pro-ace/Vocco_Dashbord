@@ -113,6 +113,12 @@ const MapDistribution: React.FC<Props> = ({ className }) => {
     });
 
     chart.appear(1000, 100);
+
+    return () => {
+      if (root) {
+        root.dispose()
+      }
+    }
   }, [countryData]);
 
   
