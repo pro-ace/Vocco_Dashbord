@@ -7,8 +7,6 @@ import { THSListWrapper } from './TransacntionHistoryList'
 
 const ProfileHeader: React.FC = () => {
   const {id: userId} = useParams();
-  const [userRcordsNumber, setUserRecordsNumber] = useState<number>(0);
-  const [userTotalListenStory , setUserTotalListenStory] = useState<number>(0);
   const [profileData, setProfileData] = useState<userInfoModel>(
     {
       "data": {

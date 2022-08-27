@@ -7,8 +7,8 @@ const USER_URL = `${API_URL}/user`
 const GET_USERS_URL = `${API_URL}/getusers`
 const GET_USER_INFO_URL = `${API_URL}/getuserinfo`
 const GET_USER_TH_URL = `${API_URL}/getusertransactionhistory`;
-const GET_USER_RECORDS_NUMBER = `${API_URL}/getuserrecordsnumber`;
-const GET_USRR_TOTAL_LISTENS = `${API_URL}/getusertotallitens`;
+// const GET_USER_RECORDS_NUMBER = `${API_URL}/getuserrecordsnumber`;
+// const GET_USRR_TOTAL_LISTENS = `${API_URL}/getusertotallitens`;
 
 const getUsers = (query: string): Promise<UsersQueryResponse> => {
   return axios
