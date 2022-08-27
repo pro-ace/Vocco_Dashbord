@@ -9,7 +9,7 @@ type Props = {
   userId: string,
 }
 
-const UsersList = () => {
+const HistoryList = () => {
   const {itemIdForUpdate} = useListView()
   return (
     <>
@@ -26,7 +26,7 @@ const THSListWrapper: React.FC<Props> = ({userId}) => (
   <QueryRequestProvider>
     <QueryResponseProvider userId = {userId}>
       <ListViewProvider>
-        <UsersList />
+        <HistoryList />
       </ListViewProvider>
     </QueryResponseProvider>
   </QueryRequestProvider>
