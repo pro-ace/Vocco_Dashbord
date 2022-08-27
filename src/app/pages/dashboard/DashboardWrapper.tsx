@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {FC, useContext, useEffect } from 'react'
+import React, {FC, useContext, useState, useEffect } from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
-// import { useAuth } from '../../modules/auth'
-// import { useToasts } from 'react-toast-notifications';
+import { useAuth } from '../../modules/auth'
+import { useToasts } from 'react-toast-notifications';
 import {
   UserGrowthWidget,
   TotalNumberOfNewUserWeek,
@@ -177,28 +177,28 @@ const DashboardPage: FC = () => {
 }
 
 const DashboardWrapper: FC = () => {
-  // const {socketInstance} = useAuth();
-  // const [sAudio] = useState(new Audio("./audio/subscribe.mp3")) ;
-  // const [pAudio] = useState(new Audio("./audio/premium.mp3")) ;
+  const {socketInstance} = useAuth();
+  const [sAudio] = useState(new Audio("./audio/subscribe.mp3")) ;
+  const [pAudio] = useState(new Audio("./audio/premium.mp3")) ;
   const intl = useIntl()
-  // const { addToast } = useToasts();
+  const { addToast } = useToasts();
 
-  // useEffect(() => {
-  //   if (!socketInstance) return;
-  //   if (!sAudio) return;
+  useEffect(() => {
+    if (!socketInstance) return;
+    if (!sAudio) return;
 
-  //   socketInstance.on("subscribe_user", (res) => {
-  //     console.log("subscribe user in Dashboard", res);
-  //     sAudio.play();
-  //     addToast(`${res.email} is registered`, { appearance: 'success' });
-  //   })
+    socketInstance.on("subscribe_user", (res) => {
+      console.log("subscribe user in Dashboard", res);
+      sAudio.play();
+      addToast(`${res.email} is registered`, { appearance: 'success' });
+    })
 
-  //   socketInstance.on("premium", (res) => {
-  //     console.log("premium user in Dashbaord", res);
-  //     pAudio.play();
-  //     addToast(`${res.email} is registered as premium uer.`, { appearance: 'success' });
-  //   })
-  // }, [socketInstance])
+    socketInstance.on("premium", (res) => {
+      console.log("premium user in Dashbaord", res);
+      pAudio.play();
+      addToast(`${res.email} is registered as premium uer.`, { appearance: 'success' });
+    })
+  }, [socketInstance])
 
   return (
     <>

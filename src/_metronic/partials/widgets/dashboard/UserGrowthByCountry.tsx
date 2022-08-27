@@ -26,7 +26,6 @@ const UserGrowthByCountry: React.FC<Props> = ({ className }) => {
         columnSettings: { fill: am5.color(getCSSVariableValue('--bs-primary')) }
       }
     })
-    console.log(data, 'xxx');
 
     const root = am5.Root.new("usergrowthbycountry");
     root.setThemes([
