@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios'
 import {ID, Response} from '../../../../_metronic/helpers'
-import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse, userRecordsNumberModel, userTotalLitensModel} from './_models'
+import {TransactionQueryResponse, User, userInfoModel, UsersQueryResponse} from './_models'
 
 const API_URL = process.env.REACT_APP_ADMIN_API_URL
 const USER_URL = `${API_URL}/user`
@@ -50,11 +50,11 @@ const getUserInfo = (userId: string) => {
   return axios.get<userInfoModel>(`${GET_USER_INFO_URL}?id=${userId}`);
 }
 
-const getUserRecordsNumber = (userId: string): Promise<userRecordsNumberModel> => {
-  return axios
-    .get(`${GET_USER_RECORDS_NUMBER}?&id=${userId}`)
-    .then((d: AxiosResponse<userRecordsNumberModel>) => d.data)
-}
+// const getUserRecordsNumber = (userId: string): Promise<userRecordsNumberModel> => {
+//   return axios
+//     .get(`${GET_USER_RECORDS_NUMBER}?&id=${userId}`)
+//     .then((d: AxiosResponse<userRecordsNumberModel>) => d.data)
+// }
 
 const getUserTransactionHistory = (query: string, userId: string): Promise<TransactionQueryResponse> => {
   return axios
@@ -62,10 +62,10 @@ const getUserTransactionHistory = (query: string, userId: string): Promise<Trans
     .then((d: AxiosResponse<TransactionQueryResponse>) => d.data)
 }
 
-const getUserTotalListens = (userId: string): Promise<userTotalLitensModel> => {
-  return axios
-    .get(`${GET_USRR_TOTAL_LISTENS}?&id=${userId}`)
-    .then((d: AxiosResponse<userTotalLitensModel>) => d.data)
-}
+// const getUserTotalListens = (userId: string): Promise<userTotalLitensModel> => {
+//   return axios
+//     .get(`${GET_USRR_TOTAL_LISTENS}?&id=${userId}`)
+//     .then((d: AxiosResponse<userTotalLitensModel>) => d.data)
+// }
 
-export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory, getUserRecordsNumber, getUserTotalListens}
+export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser, getUserInfo, getUserTransactionHistory}

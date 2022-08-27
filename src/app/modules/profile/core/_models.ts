@@ -35,14 +35,6 @@ export const initialUser: User = {
   email: '',
 }
 
-export interface userRecordsNumberModel {
-  count: number
-}
-
-export interface userTotalLitensModel {
-  count: number
-}
-
 export interface userInfoModel {
   data: {
     email: string
@@ -53,10 +45,17 @@ export interface userInfoModel {
     gender: string
     country: string
     premium: string
+    isActive: boolean
     avatar: {
       url: string
       link: string
     }
+  },
+  records: {
+    count: number
+  },
+  listens: {
+    count: number
   }
 }
 
