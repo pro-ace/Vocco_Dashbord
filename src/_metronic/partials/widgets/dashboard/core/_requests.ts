@@ -1,10 +1,10 @@
 import axios from 'axios'
 import {
-  SubscribeCountModel, 
-  NewUsersThisWeekModel, 
-  NewUsersThisMonthModel, 
+  SubscribeCountModel,
+  NewUsersThisWeekModel,
+  NewUsersThisMonthModel,
   totalRecordsModel,
-  DailyUsersModel, 
+  DailyUsersModel,
   PremiumUsersByMonthModel,
   TopCategoryVocalModel,
   DownloadsByMonthModel,
@@ -14,7 +14,8 @@ import {
   countriesModel,
   topUserModel,
   UsersByCountryStatis,
-  HistoryByMonthModel
+  HistoryByMonthModel,
+  ActiveUserModel
 } from './_models'
 
 
@@ -95,4 +96,8 @@ export function getCountries() {
 
 export function getTopUsers() {
   return axios.get<topUserModel>(`${ADMIN_API_URL}/getrecordsgbyuser`);
+}
+
+export function getActiveUsers() {
+  return axios.get<ActiveUserModel>(`${ADMIN_API_URL}/getactiveusercount`);
 }

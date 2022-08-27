@@ -22,10 +22,11 @@ import {
   OpenAppByMonth,
   GetInviteLinks,
   GetShareStories,
-  GetSeesionPerTime
+  GetSeesionPerTime,
 } from '../../../_metronic/partials/widgets'
 import { CountryContext } from '../../../Context'
 import { getusersbycountry } from '../../../_metronic/partials/widgets/dashboard/core/_requests'
+import { ActiveStatus } from '../../../_metronic/partials/widgets/dashboard/ActiveStatus';
 
 const DashboardPage: FC = () => {
   const { setUsersByCountry, setTotalUsers } = useContext(CountryContext);
@@ -126,6 +127,11 @@ const DashboardPage: FC = () => {
       </div>
       <div className='col-xl-4 mb-xl-10'>
         <TotalRecords
+          className='card-xl-stretch mb-xl-8'
+        />
+      </div>
+      <div className='col-xl-4 mb-xl-10'>
+        <ActiveStatus
           className='card-xl-stretch mb-xl-8'
         />
       </div>

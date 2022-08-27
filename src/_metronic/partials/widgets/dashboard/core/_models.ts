@@ -167,3 +167,10 @@ export interface topUserModel {
     }
   }>
 }
+
+export interface ActiveUserModel {
+    totalCount: number,
+    activeUserCount: number,
+    inActiveUserCount: number,
+    growthPercent: number
+}
