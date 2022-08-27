@@ -133,7 +133,7 @@ const ProfileHeader: React.FC = () => {
                     <div className="card pt-4 h-md-100 mb-6 mb-md-0">
                       <div className="card-header border-0">
                         <div className="card-title">
-                          <h2 className="fw-bolder">Total Listen</h2>
+                          <h2 className="fw-bolder">Total Plays</h2>
                         </div>
                       </div>
                       <div className="card-body pt-0">
@@ -144,7 +144,7 @@ const ProfileHeader: React.FC = () => {
                                 <path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
                               </svg>
                             </span>
-                            <div className="ms-2"> {userTotalListenStory} <span className="text-muted fs-4 fw-bold">Listen</span></div>
+                            <div className="ms-2"> {userTotalListenStory} <span className="text-muted fs-4 fw-bold">Play</span></div>
                           </div>
                           <div className="fs-7 fw-normal text-muted">Earn reward points with every vocals.</div>
                         </div>
