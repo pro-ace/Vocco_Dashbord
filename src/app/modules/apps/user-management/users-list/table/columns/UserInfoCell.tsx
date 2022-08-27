@@ -24,7 +24,8 @@ const UserInfoCell: FC<Props> = ({ user }) => (
             `text-${user.initials?.state}`
           )}
         >
-          {user.initials?.label}
+          {/* {user.initials?.label} */}
+          <span className="symbol-label bg-warning text-inverse-warning fw-bolder fs-5">{user.name ? user.name.charAt(0).toUpperCase() : "N"}</span>
         </div>
       )}
     </div>

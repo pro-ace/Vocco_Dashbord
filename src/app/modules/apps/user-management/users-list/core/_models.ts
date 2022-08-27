@@ -8,6 +8,7 @@ export type User = {
   country?: string,
   phone_number?: string,
   position?: string,
+  isActive?: boolean,
   premium?: string,
   role?: string
   last_login?: string

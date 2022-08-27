@@ -9,6 +9,7 @@ import { UserBirthday } from './UserBirthday'
 import { UserGender } from './UserGender'
 import {User} from '../../core/_models'
 import { UserPhoneNumberCell } from './UserPhoneNumberCell'
+import {UserActive} from './UserActiveCell'
 
 const usersColumns: ReadonlyArray<Column<User>> = [
   {
@@ -41,6 +42,11 @@ const usersColumns: ReadonlyArray<Column<User>> = [
     ),
     id: 'phone_number',
     Cell: ({...props}) => <UserPhoneNumberCell phone_number={props.data[props.row.index].phoneNumber} />,
+  },
+  {
+    Header: (props) => <UserCustomHeader tableProps={props} title='Active'/>,
+    id: 'isactive',
+    Cell: ({...props}) => <UserActive active={props.data[props.row.index].isActive} />,
   },
   {
     Header: (props) => (
