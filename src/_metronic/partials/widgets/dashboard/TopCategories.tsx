@@ -92,7 +92,7 @@ const TopCategories: React.FC<Props> = ({className}) => {
                                         <td>
                                           {/* <img src="media/stock/ecommerce/56.gif" className="w-50px ms-n1" alt="" /> */}
                                           <Link to={`/apps/user-management/users/profile/${eVocal.user.id}`}>
-                                            {eVocal.user.avatar.url ?
+                                            {eVocal.user?.avatar?.url ?
                                               <div className="symbol symbol-45px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon" key={index}>
                                                 <img alt="Pic" src={eVocal.user.avatar.url} />
                                               </div> :
