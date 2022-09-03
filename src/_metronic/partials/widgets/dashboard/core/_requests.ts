@@ -54,6 +54,10 @@ export function getpremiumusersbymonth() {
   return axios.get<PremiumUsersByMonthModel>(`${ADMIN_API_URL}/getpremiumusersbymonth`);
 }
 
+export function getPremiumUsers() {
+  return axios.get<PremiumUsersByMonthModel>(`${ADMIN_API_URL}/getpremiumusers`);
+}
+
 export function getinvitelinks() {
   return axios.get<HistoryByMonthModel>(`${ADMIN_API_URL}/getinvitelinks`);
 }

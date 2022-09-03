@@ -172,5 +172,6 @@ export interface ActiveUserModel {
     totalCount: number,
     activeUserCount: number,
     inActiveUserCount: number,
-    growthPercent: number
+    creatorCount: number,
+    consumerCount:number
 }

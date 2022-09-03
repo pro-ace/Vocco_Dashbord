@@ -16,7 +16,8 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
             "totalCount": 0,
             "activeUserCount": 0,
             "inActiveUserCount": 0,
-            "growthPercent": 100
+            "creatorCount": 0,
+            "consumerCount": 0
         }
     );
 
@@ -58,7 +59,6 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
         // call the function
         fetchData()
             .catch(console.error);
-
     }, [])
 
     return (
@@ -66,8 +66,8 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
             <div className="card-header pt-5">
                 <div className="card-title d-flex flex-column">
                     <div className="d-flex align-items-center">
-                        <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{activeUserData?.totalCount.toLocaleString()}</span>
-                        {
+                        <span className="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">{activeUserData?.activeUserCount.toLocaleString()}</span>
+                        {/* {
                             activeUserData?.growthPercent > 0 ?
                                 <span className="badge badge-success fs-base">
                                     <span className="svg-icon svg-icon-5 svg-icon-white ms-n1">
@@ -87,7 +87,7 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
                                     </svg>
                                 </span>
                                 {activeUserData?.growthPercent}%</span>
-                        }
+                        } */}
                     </div>
                     <span className="text-gray-400 pt-1 fw-bold fs-6">Active users</span>
                 </div>
@@ -109,6 +109,16 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
                         <div className="text-gray-500 flex-grow-1 me-4">Inactive Users</div>
                         <div className="fw-boldest text-gray-700 text-xxl-end">{activeUserData ? (Math.round(activeUserData.inActiveUserCount * 100 / activeUserData.totalCount) * 100) / 100 : 0}%</div>
                     </div>
+                    <div className="d-flex fs-6 fw-bold align-items-center">
+                        <div className="bullet w-8px h-6px rounded-2 bg-success me-3"></div>
+                        <div className="text-gray-500 flex-grow-1 me-4">Creators Count</div>
+                        <div className="fw-boldest text-gray-700 text-xxl-end">{activeUserData ? activeUserData.creatorCount : 0}</div>
+                    </div>
+                    <div className="d-flex fs-6 fw-bold align-items-center my-3">
+                        <div className="bullet w-8px h-6px rounded-2 bg-warning me-3"></div>
+                        <div className="text-gray-500 flex-grow-1 me-4">Consumers Count</div>
+                        <div className="fw-boldest text-gray-700 text-xxl-end">{activeUserData ? activeUserData.consumerCount : 0}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +127,7 @@ const ActiveStatus: React.FC<Props> = ({ className }) => {
 
 const chartOptions = (total: number, active: number, inactive: number ): ApexOptions => {
     return {
-        series: [active, inactive , total - active - inactive],
+        series: [active, inactive],
         chart: {
             height: 70,
             type: 'donut',
@@ -128,11 +138,11 @@ const chartOptions = (total: number, active: number, inactive: number ): ApexOpt
                 enabled: false
             }
         },
-        colors: ['#3699ff', '#f64e60', '#0bb783'],
+        colors: ['#3699ff', '#f64e60'],
         plotOptions: {
             pie: {
                 startAngle: 0,
-                endAngle: 360
+                endAngle: 8280
             }
         },
         dataLabels: {

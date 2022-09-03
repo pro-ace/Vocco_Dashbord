@@ -13,7 +13,7 @@ const NumberOfPremiumMembers: React.FC<Props> = ({className}) => {
   const [premiumUsers, setPremiumUsers] = useState<Array<IdCreatedAtModel>>([]);
   const [totalPremiumUsers, setTotalPremiumUsers] = useState<number>(0);
   const chartRef = useRef<HTMLDivElement | null>(null)
-  
+
   useEffect(() => {
     if (!chartRef.current) {
       return
@@ -63,6 +63,7 @@ const NumberOfPremiumMembers: React.FC<Props> = ({className}) => {
   useEffect(() =>{
     const fetchData = async () => {
       const {data: res} = await getpremiumusersbymonth();
+      // const {data: res} = await getPremiumUsers();
       setPremiumUsers(res.premiumUsers);
 
       setTimeout(() => {
@@ -70,7 +71,7 @@ const NumberOfPremiumMembers: React.FC<Props> = ({className}) => {
           .catch(console.error);
       }, 7200000)
     }
-  
+
     fetchData()
       .catch(console.error);
 
